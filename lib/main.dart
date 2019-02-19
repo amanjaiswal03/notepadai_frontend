@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notepadai_app/proto/audioStream.proto';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audio_recorder/audio_recorder.dart';
 
