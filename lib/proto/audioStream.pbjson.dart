@@ -18,15 +18,3 @@ const Sentence$json = const {
   ],
 };
 
-const AudioProcessorServiceBase$json = const {
-  '1': 'AudioProcessor',
-  '2': const [
-    const {'1': 'TranscriptAudio', '2': '.AudioChunk', '3': '.Sentence', '5': true, '6': true},
-  ],
-};
-
-const AudioProcessorServiceBase$messageJson = const {
-  '.AudioChunk': AudioChunk$json,
-  '.Sentence': Sentence$json,
-};
-

@@ -4,7 +4,6 @@
 ///
 // ignore_for_file: non_constant_identifier_names,library_prefixes,unused_import
 
-import 'dart:async' as $async;
 // ignore: UNUSED_SHOWN_NAME
 import 'dart:core' show int, bool, double, String, List, Map, override;
 
@@ -62,15 +61,5 @@ class Sentence extends $pb.GeneratedMessage {
   set msg(String v) { $_setString(0, v); }
   bool hasMsg() => $_has(0);
   void clearMsg() => clearField(1);
-}
-
-class AudioProcessorApi {
-  $pb.RpcClient _client;
-  AudioProcessorApi(this._client);
-
-  $async.Future<Sentence> transcriptAudio($pb.ClientContext ctx, AudioChunk request) {
-    var emptyResponse = new Sentence();
-    return _client.invoke<Sentence>(ctx, 'AudioProcessor', 'TranscriptAudio', request, emptyResponse);
-  }
 }
 

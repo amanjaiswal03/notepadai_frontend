@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:notepadai_app/proto/audioStream.proto';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audio_recorder/audio_recorder.dart';
+import 'package:notepadai_app/proto/audioStream.pbgrpc.dart';
+import 'package:notepadai_app/proto/audioStream.pb.dart';
+import 'package:grpc/grpc.dart';
 
 /* NotepadAI
   Copy of base application example provided by Google
@@ -28,6 +30,8 @@ class NotepadAI extends StatelessWidget {
   }
 }
 
+//TODO: Implement audio recording, hack into chunks and send via proto
+
 // Starting screen upon run
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -39,6 +43,10 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
+  static const int PORT = 12345;
+  static const String HOSTNAME = "127.0.0.1";
+
+
 
   @override
   Widget build(BuildContext context) {
