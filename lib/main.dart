@@ -60,13 +60,6 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('transscripts')),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlue,
-        elevation: 12.0,
-        child: Icon(Icons.mic),
-        onPressed: null,
-        shape: DiamondBorder(),
-      ),
     );
   }
 }
