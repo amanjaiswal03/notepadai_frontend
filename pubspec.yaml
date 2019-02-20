@@ -17,7 +17,6 @@ dependencies:
     sdk: flutter
 
   # Audio and Permissions dependencies:
-  audio_recorder: ^0.0.6
   audioplayers: ^0.8.1
   simple_permissions: ^0.1.9
 

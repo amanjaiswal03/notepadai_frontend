@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:audio_recorder/audio_recorder.dart';
 import 'package:notepadai_app/proto/audioStream.pbgrpc.dart';
 import 'package:notepadai_app/proto/audioStream.pb.dart';
 import 'package:grpc/grpc.dart';
