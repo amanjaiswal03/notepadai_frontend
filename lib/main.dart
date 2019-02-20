@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('Hypnotegit '),
+        title: new Text('Hypnote'),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlue,
-        elevation: 7,
+        elevation: 12.0,
         child: Icon(Icons.mic),
         onPressed: null,
         shape: DiamondBorder(),
