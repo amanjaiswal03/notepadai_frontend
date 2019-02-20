@@ -46,7 +46,15 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
+
+  /* TESTING PURPOSE ONLY */
+  // TODO: stream audio to server using gRPC
   static int _isPressed = 0;
+  AudioPlayer _audioPlayer;
+
+  void _init() async {
+    _audioPlayer = new AudioPlayer();
+  }
 
   /* Test purposes only: */
   static final _floatingButtonState = [
@@ -61,19 +69,24 @@ class _HomePageState extends State<HomePage> {
   Icon _buttonIcon = _floatingButtonState[_isPressed];
   Color _buttonColor = _floatingButtonColor[_isPressed];
 
-  void _streamAudio() {
+  void _floatingButtonPress() {
     setState(() {
       _buttonIcon = _floatingButtonState[_isPressed];
       _buttonColor = _floatingButtonColor[_isPressed];
       _isPressed = (_isPressed + 1) % 2;
     });
+    _audioStream();
+  }
+
+  void _audioStream() {
 
   }
 
-
+    /* END OF TESTING PART */
 
   @override
   Widget build(BuildContext context) {
+    _init();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -82,7 +95,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: _buttonColor,
         child: _buttonIcon,
-        onPressed: _streamAudio,
+        onPressed: _floatingButtonPress,
         tooltip: 'Start streaming audio',
       ),
     );
