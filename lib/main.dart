@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notepadai_app/design elements/DiamondBorder.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audio_recorder/audio_recorder.dart';
 import 'package:notepadai_app/proto/audioStream.pbgrpc.dart';
@@ -49,8 +50,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+      appBar: new AppBar(
+        title: new Text('Hypnotegit '),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.record_voice_over), title: Text('record')),
+          BottomNavigationBarItem(icon: Icon(Icons.create), title: Text('new transscript')),
+          BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('transscripts')),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlue,
+        elevation: 7,
+        child: Icon(Icons.mic),
+        onPressed: null,
+        shape: DiamondBorder(),
       ),
     );
   }
