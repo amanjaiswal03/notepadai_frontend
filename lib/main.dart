@@ -9,6 +9,10 @@ import 'package:grpc/grpc.dart';
   Copy of base application example provided by Google
  */
 
+//TODO: Move to corresponding class
+const int PORT = 12345;
+const String HOSTNAME = "127.0.0.1";
+
 
 // Main function running the class containing the whole project
 void main() => runApp(NotepadAI());
@@ -30,8 +34,6 @@ class NotepadAI extends StatelessWidget {
   }
 }
 
-//TODO: Implement audio recording, hack into chunks and send via proto
-
 // Starting screen upon run
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -43,10 +45,6 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
-  static const int PORT = 12345;
-  static const String HOSTNAME = "127.0.0.1";
-
-
 
   @override
   Widget build(BuildContext context) {
