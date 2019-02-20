@@ -12,6 +12,7 @@ import 'package:grpc/grpc.dart';
 //TODO: Move to corresponding class
 const int PORT = 12345;
 const String HOSTNAME = "127.0.0.1";
+const Color MAIN_COLOR = Colors.cyan;
 
 
 // Main function running the class containing the whole project
@@ -27,7 +28,7 @@ class NotepadAI extends StatelessWidget {
     return MaterialApp(
       title: 'NotepadAI',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: MAIN_COLOR,
       ),
       home: HomePage(title: 'HomePage - NotepadAI'),
     );
@@ -45,12 +46,44 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
+  static int _isPressed = 0;
+
+  /* Test purposes only: */
+  static final _floatingButtonState = [
+    Icon(Icons.keyboard_voice),
+    Icon(Icons.stop),
+  ];
+  static final _floatingButtonColor = [
+    MAIN_COLOR,
+    Colors.red,
+  ];
+
+  Icon _buttonIcon = _floatingButtonState[_isPressed];
+  Color _buttonColor = _floatingButtonColor[_isPressed];
+
+  void _streamAudio() {
+    setState(() {
+      _buttonIcon = _floatingButtonState[_isPressed];
+      _buttonColor = _floatingButtonColor[_isPressed];
+      _isPressed = (_isPressed + 1) % 2;
+    });
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+      ),
+      // BUTTON FOR TESTING PURPOSE ONLY - REMOVE OR CHANGE ONCE TEST COMPLETED (->AUDIO OVER gRPC)
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: _buttonColor,
+        child: _buttonIcon,
+        onPressed: _streamAudio,
+        tooltip: 'Start streaming audio',
       ),
     );
   }
