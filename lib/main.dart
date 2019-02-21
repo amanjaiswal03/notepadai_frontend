@@ -28,11 +28,11 @@ class NotepadAI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NotepadAI',
+      title: 'HypNote',
       theme: ThemeData(
         primarySwatch: MAIN_COLOR,
       ),
-      home: HomePage(title: 'HomePage - NotepadAI'),
+      home: HomePage(title: 'HomePage - HypNote'),
     );
   }
 }
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('Hypnote'),
+        title: new Text(widget.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
