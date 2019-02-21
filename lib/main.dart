@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('Hypnote'),
+        title: new Text('All Notes'),
       ),
       bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
