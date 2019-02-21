@@ -9,6 +9,7 @@
 .buildlog/
 .history
 .svn/
+*workspace
 
 # IntelliJ related
 *.iml
