@@ -80,11 +80,13 @@ class _HomePageState extends State<HomePage> {
         title: new Text('Hypnote'),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.record_voice_over), title: Text('record')),
-          BottomNavigationBarItem(icon: Icon(Icons.create), title: Text('new transscript')),
-          BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('transscripts')),
+          items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('All Notes')),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_border), title: Text('Favorites')),
+          BottomNavigationBarItem(icon: Icon(Icons.edit), title: Text('Editor')),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settings'))
         ],
+        type: BottomNavigationBarType.fixed,
       ),
       // BUTTON FOR TESTING PURPOSE ONLY - REMOVE OR CHANGE ONCE TEST COMPLETED (->AUDIO OVER gRPC)
       floatingActionButton: FloatingActionButton(
