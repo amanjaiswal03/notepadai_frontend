@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:notepadai_app/design elements/DiamondBorder.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audio_recorder/audio_recorder.dart';
@@ -69,6 +70,8 @@ class _HomePageState extends State<HomePage> {
       _isPressed = (_isPressed + 1) % 2;
     });
 
+    StreamController<String> controller = new StreamController();
+    //Stream<String> audioStream = new Stream.fromFuture();
   }
 
 
