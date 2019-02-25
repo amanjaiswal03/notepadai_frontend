@@ -17,7 +17,7 @@ dependencies:
     sdk: flutter
 
   # Personally maintained Package:
-  mic_stream: ^0.0.1
+  mic_stream: ^0.0.2
 
   # Audio and Permissions dependencies:
   audioplayers: ^0.8.1

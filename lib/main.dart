@@ -5,6 +5,8 @@ import 'package:notepadai_app/proto/audioStream.pb.dart';
 import 'package:grpc/grpc.dart';
 import 'package:mic_stream/mic_stream.dart';
 
+import 'dart:typed_data';
+
 /* NotepadAI
   Copy of base application example provided by Google
  */
@@ -53,13 +55,14 @@ class _HomePageState extends State<HomePage> {
   static bool _isRecording = false;
   AudioPlayer _audioPlayer;
   Microphone _microphone;
+  AudioProcessorClient _client;
 
   void _init() async {
     _audioPlayer = new AudioPlayer();
     _microphone = new Microphone();
+    _client = new AudioProcessorClient(new ClientChannel(HOSTNAME, port: PORT));
   }
 
-  /* Test purposes only: */
   static final _floatingButtonState = [
     Icon(Icons.keyboard_voice),
     Icon(Icons.stop),
@@ -81,10 +84,12 @@ class _HomePageState extends State<HomePage> {
     _audioStream();
   }
 
-  void _audioStream() {
+  void _audioStream() async {
     if (!_isRecording) {
-      _microphone.start();
-      _microphone.stream.listen((samples) => print(samples));
+      Stream<Uint8List> _stream = await _microphone.start();
+      _stream.listen((samples) => print(samples));
+      //TODO: convert Uint8List stream to AudioChunk stream
+      //_client.transcriptAudio();
     }
     else _microphone.stop();
   }
@@ -98,7 +103,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      // BUTTON FOR TESTING PURPOSE ONLY - REMOVE OR CHANGE ONCE TEST COMPLETED (->AUDIO OVER gRPC)
+      // Button currently used for audio testing
       floatingActionButton: FloatingActionButton(
         backgroundColor: _buttonColor,
         child: _buttonIcon,
