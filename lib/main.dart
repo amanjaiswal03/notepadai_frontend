@@ -33,7 +33,7 @@ class NotepadAI extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: MAIN_COLOR,
       ),
-      home: HomePage(title: 'HomePage - HypNote'),
+      home: HomePage(title: 'All Notes'),
     );
   }
 }
