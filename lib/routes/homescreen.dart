@@ -61,7 +61,6 @@ class _HomePageState extends State<HomePage> {
         ],
         type: BottomNavigationBarType.fixed,
       ),
-      // BUTTON FOR TESTING PURPOSE ONLY - REMOVE OR CHANGE ONCE TEST COMPLETED (->AUDIO OVER gRPC)
       floatingActionButton: FloatingActionButton(
         backgroundColor: _buttonColor,
         child: _buttonIcon,
