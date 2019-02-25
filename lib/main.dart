@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:notepadai_app/proto/audioStream.pbgrpc.dart';
 import 'package:notepadai_app/proto/audioStream.pb.dart';
 import 'package:grpc/grpc.dart';
+import 'package:mic_stream/mic_stream.dart';
 
 /* NotepadAI
   Copy of base application example provided by Google
@@ -49,10 +50,13 @@ class _HomePageState extends State<HomePage> {
   /* TESTING PURPOSE ONLY */
   // TODO: stream audio to server using gRPC
   static int _isPressed = 0;
+  static bool _isRecording = false;
   AudioPlayer _audioPlayer;
+  Microphone _microphone;
 
   void _init() async {
     _audioPlayer = new AudioPlayer();
+    _microphone = new Microphone();
   }
 
   /* Test purposes only: */
@@ -78,7 +82,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _audioStream() {
-
+    if (!_isRecording) {
+      _microphone.start();
+      _microphone.stream.listen((samples) => print(samples));
+    }
+    else _microphone.stop();
   }
 
     /* END OF TESTING PART */
