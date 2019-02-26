@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'screens/homePage/index.dart';
+import 'package:notepadai_app/screens/homePage/index.dart';
 
 class Routes {
   final routes = <String, WidgetBuilder>{
-    '/HomePage': (BuildContext context) => new HomePage()
+    '/': (BuildContext context) => new HomePage()
   };
 
   Routes() {
-    runApp(new MaterialApp(
-      title: 'Flutter Demo',
+
+    runApp(MaterialApp(
+      title: 'Named Routes Demo',
+      // Start the app with the "/" named route. In our case, the app will start
+      // on the FirstScreen Widget
+      initialRoute: '/',
       routes: routes,
-      home: new HomePage(),
     ));
   }
 }
