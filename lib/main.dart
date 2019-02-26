@@ -88,13 +88,7 @@ class _HomePageState extends State<HomePage> {
     StreamController<Sample> _sender = new StreamController();
     if (!_isRecording) {
       _isRecording = true;
-
-      /*
-      Stream<Uint8List> _byteStream = await _microphone.start();
-      _byteStream.listen((sample) => _sender.add(convertByteArrayToAudioChunk(sample)));
-      */
-
-      (await _microphone.start()).listen((sample) => _sender.add(convertByteArrayToAudioChunk(sample)));
+      _subscriber = (await _microphone.start()).listen((sample) => _sender.add(_convertByteArrayToAudioChunk(sample)));
       _client.transcriptAudio(_sender.stream);
     }
     else {
@@ -105,10 +99,9 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  convertByteArrayToAudioChunk (Uint8List sampleIn) {
+  _convertByteArrayToAudioChunk (Uint8List sampleIn) {
     Sample sampleOut = new Sample();
     sampleOut.setField(1, sampleIn);
-    print(sampleOut.getField(1));
     return sampleOut;
   }
 
