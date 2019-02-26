@@ -6,6 +6,7 @@ import 'package:grpc/grpc.dart';
 import 'package:mic_stream/mic_stream.dart';
 
 import 'dart:typed_data';
+import 'dart:async';
 
 /* NotepadAI
   Copy of base application example provided by Google
@@ -53,12 +54,11 @@ class _HomePageState extends State<HomePage> {
   // TODO: stream audio to server using gRPC
   static int _isPressed = 0;
   static bool _isRecording = false;
-  AudioPlayer _audioPlayer;
   Microphone _microphone;
   AudioProcessorClient _client;
+  StreamSubscription<Uint8List> _subscriber;
 
   void _init() async {
-    _audioPlayer = new AudioPlayer();
     _microphone = new Microphone();
     _client = new AudioProcessorClient(new ClientChannel(HOSTNAME, port: PORT));
   }
@@ -85,13 +85,31 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _audioStream() async {
+    StreamController<Sample> _sender = new StreamController();
     if (!_isRecording) {
-      Stream<Uint8List> _stream = await _microphone.start();
-      _stream.listen((samples) => print(samples));
-      //TODO: convert Uint8List stream to AudioChunk stream
-      //_client.transcriptAudio();
+      _isRecording = true;
+
+      /*
+      Stream<Uint8List> _byteStream = await _microphone.start();
+      _byteStream.listen((sample) => _sender.add(convertByteArrayToAudioChunk(sample)));
+      */
+
+      (await _microphone.start()).listen((sample) => _sender.add(convertByteArrayToAudioChunk(sample)));
+      _client.transcriptAudio(_sender.stream);
     }
-    else _microphone.stop();
+    else {
+      _isRecording = false;
+      _subscriber.cancel();
+      _microphone.stop();
+      _sender.close();
+    }
+  }
+
+  convertByteArrayToAudioChunk (Uint8List sampleIn) {
+    Sample sampleOut = new Sample();
+    sampleOut.setField(1, sampleIn);
+    print(sampleOut.getField(1));
+    return sampleOut;
   }
 
     /* END OF TESTING PART */

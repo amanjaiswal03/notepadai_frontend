@@ -9,25 +9,25 @@ import 'dart:core' show int, bool, double, String, List, Map, override;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class AudioChunk extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = new $pb.BuilderInfo('AudioChunk')
+class Sample extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = new $pb.BuilderInfo('Sample')
     ..a<List<int>>(1, 'chunk', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
-  AudioChunk() : super();
-  AudioChunk.fromBuffer(List<int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  AudioChunk.fromJson(String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  AudioChunk clone() => new AudioChunk()..mergeFromMessage(this);
-  AudioChunk copyWith(void Function(AudioChunk) updates) => super.copyWith((message) => updates(message as AudioChunk));
+  Sample() : super();
+  Sample.fromBuffer(List<int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  Sample.fromJson(String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  Sample clone() => new Sample()..mergeFromMessage(this);
+  Sample copyWith(void Function(Sample) updates) => super.copyWith((message) => updates(message as Sample));
   $pb.BuilderInfo get info_ => _i;
-  static AudioChunk create() => new AudioChunk();
-  AudioChunk createEmptyInstance() => create();
-  static $pb.PbList<AudioChunk> createRepeated() => new $pb.PbList<AudioChunk>();
-  static AudioChunk getDefault() => _defaultInstance ??= create()..freeze();
-  static AudioChunk _defaultInstance;
-  static void $checkItem(AudioChunk v) {
-    if (v is! AudioChunk) $pb.checkItemFailed(v, _i.qualifiedMessageName);
+  static Sample create() => new Sample();
+  Sample createEmptyInstance() => create();
+  static $pb.PbList<Sample> createRepeated() => new $pb.PbList<Sample>();
+  static Sample getDefault() => _defaultInstance ??= create()..freeze();
+  static Sample _defaultInstance;
+  static void $checkItem(Sample v) {
+    if (v is! Sample) $pb.checkItemFailed(v, _i.qualifiedMessageName);
   }
 
   List<int> get chunk => $_getN(0);
