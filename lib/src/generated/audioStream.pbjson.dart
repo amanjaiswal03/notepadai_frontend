@@ -4,17 +4,17 @@
 ///
 // ignore_for_file: non_constant_identifier_names,library_prefixes,unused_import
 
-const Samples$json = const {
-  '1': 'Samples',
+const Sample$json = const {
+  '1': 'Sample',
   '2': const [
     const {'1': 'chunk', '3': 1, '4': 1, '5': 12, '10': 'chunk'},
   ],
 };
 
-const Response$json = const {
-  '1': 'Response',
+const Sentence$json = const {
+  '1': 'Sentence',
   '2': const [
-    const {'1': 'word', '3': 1, '4': 1, '5': 9, '10': 'word'},
+    const {'1': 'msg', '3': 1, '4': 1, '5': 9, '10': 'msg'},
   ],
 };
 
