@@ -22,7 +22,194 @@ class NotepadAI extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: MAIN_COLOR,
       ),
+<<<<<<< HEAD
       home: HomePage(title: 'All Notes'),
+||||||| merged common ancestors
+      home: HomePage(title: 'HomePage - NotepadAI'),
+    );
+  }
+}
+
+// Starting screen upon run
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+// Subclass of the HomePage specifying style and interactive elements and putting them in a grid
+class _HomePageState extends State<HomePage> {
+
+  /* TESTING PURPOSE ONLY */
+  // TODO: stream audio to server using gRPC
+  static int _isPressed = 0;
+  static bool _isRecording = false;
+  Microphone _microphone;
+  AudioProcessorClient _client;
+  StreamSubscription<Uint8List> _subscriber;
+
+  void _init() async {
+    _microphone = new Microphone();
+    _client = new AudioProcessorClient(new ClientChannel(HOSTNAME, port: PORT));
+  }
+
+  static final _floatingButtonState = [
+    Icon(Icons.keyboard_voice),
+    Icon(Icons.stop),
+  ];
+  static final _floatingButtonColor = [
+    MAIN_COLOR,
+    Colors.red,
+  ];
+
+  Icon _buttonIcon = _floatingButtonState[_isPressed];
+  Color _buttonColor = _floatingButtonColor[_isPressed];
+
+  void _floatingButtonPress() {
+    setState(() {
+      _buttonIcon = _floatingButtonState[_isPressed];
+      _buttonColor = _floatingButtonColor[_isPressed];
+      _isPressed = (_isPressed + 1) % 2;
+    });
+    _audioStream();
+  }
+
+  void _audioStream() async {
+    StreamController<Sample> _sender = new StreamController();
+    if (!_isRecording) {
+      _isRecording = true;
+
+      /*
+      Stream<Uint8List> _byteStream = await _microphone.start();
+      _byteStream.listen((sample) => _sender.add(convertByteArrayToAudioChunk(sample)));
+      */
+
+      (await _microphone.start()).listen((sample) => _sender.add(convertByteArrayToAudioChunk(sample)));
+      _client.transcriptAudio(_sender.stream);
+    }
+    else {
+      _isRecording = false;
+      _subscriber.cancel();
+      _microphone.stop();
+      _sender.close();
+    }
+  }
+
+  convertByteArrayToAudioChunk (Uint8List sampleIn) {
+    Sample sampleOut = new Sample();
+    sampleOut.setField(1, sampleIn);
+    print(sampleOut.getField(1));
+    return sampleOut;
+  }
+
+    /* END OF TESTING PART */
+
+  @override
+  Widget build(BuildContext context) {
+    _init();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      // Button currently used for audio testing
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: _buttonColor,
+        child: _buttonIcon,
+        onPressed: _floatingButtonPress,
+        tooltip: 'Start streaming audio',
+      ),
+=======
+      home: HomePage(title: 'HomePage - NotepadAI'),
+    );
+  }
+}
+
+// Starting screen upon run
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+// Subclass of the HomePage specifying style and interactive elements and putting them in a grid
+class _HomePageState extends State<HomePage> {
+
+  /* TESTING PURPOSE ONLY */
+  // TODO: stream audio to server using gRPC
+  static int _isPressed = 0;
+  static bool _isRecording = false;
+  Microphone _microphone;
+  AudioProcessorClient _client;
+  StreamSubscription<Uint8List> _subscriber;
+
+  void _init() async {
+    _microphone = new Microphone();
+    _client = new AudioProcessorClient(new ClientChannel(HOSTNAME, port: PORT));
+  }
+
+  static final _floatingButtonState = [
+    Icon(Icons.keyboard_voice),
+    Icon(Icons.stop),
+  ];
+  static final _floatingButtonColor = [
+    MAIN_COLOR,
+    Colors.red,
+  ];
+
+  Icon _buttonIcon = _floatingButtonState[_isPressed];
+  Color _buttonColor = _floatingButtonColor[_isPressed];
+
+  void _floatingButtonPress() {
+    setState(() {
+      _buttonIcon = _floatingButtonState[_isPressed];
+      _buttonColor = _floatingButtonColor[_isPressed];
+      _isPressed = (_isPressed + 1) % 2;
+    });
+    _audioStream();
+  }
+
+  void _audioStream() async {
+    StreamController<Sample> _sender = new StreamController();
+    if (!_isRecording) {
+      _isRecording = true;
+      _subscriber = (await _microphone.start()).listen((sample) => _sender.add(_convertByteArrayToAudioChunk(sample)));
+      _client.transcriptAudio(_sender.stream);
+    }
+    else {
+      _isRecording = false;
+      _subscriber.cancel();
+      _microphone.stop();
+      _sender.close();
+    }
+  }
+
+  _convertByteArrayToAudioChunk (Uint8List sampleIn) {
+    Sample sampleOut = new Sample();
+    sampleOut.setField(1, sampleIn);
+    return sampleOut;
+  }
+
+    /* END OF TESTING PART */
+
+  @override
+  Widget build(BuildContext context) {
+    _init();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      // Button currently used for audio testing
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: _buttonColor,
+        child: _buttonIcon,
+        onPressed: _floatingButtonPress,
+        tooltip: 'Start streaming audio',
+      ),
+>>>>>>> Updated mic_stream package to support pause() and resume()
     );
   }
 }

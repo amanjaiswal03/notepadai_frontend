@@ -17,7 +17,13 @@ dependencies:
     sdk: flutter
 
   # Personally maintained Package:
+<<<<<<< HEAD
   mic_stream: ^0.0.8
+||||||| merged common ancestors
+  mic_stream: ^0.0.2
+=======
+  mic_stream: ^0.0.3
+>>>>>>> Updated mic_stream package to support pause() and resume()
 
   # Audio and Permissions dependencies:
   audioplayers: ^0.8.1
