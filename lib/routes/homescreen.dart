@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
-import 'package:notepadai_app/design elements/navigationBar.dart';
 //import 'package:notepadai_app/design elements/DiamondBorder.dart';
 //import 'package:audioplayers/audioplayers.dart';
 //import 'package:audio_recorder/audio_recorder.dart';
