@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
+import 'package:notepadai_app/design elements/navigationBar.dart';
 //import 'package:notepadai_app/design elements/DiamondBorder.dart';
 //import 'package:audioplayers/audioplayers.dart';
 //import 'package:audio_recorder/audio_recorder.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatefulWidget {
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
   static int _isPressed = 0;
+  int _selectedIndex = 0;
 
   /* Test purposes only: */
   static final _floatingButtonState = [
@@ -44,6 +46,12 @@ class _HomePageState extends State<HomePage> {
     //Stream<String> audioStream = new Stream.fromFuture();
   }
 
+  final _widgetOptions = [
+    Text('Index 0: All Notes'),
+    Text('Index 1: Favorites'),
+    Text('Index 2: Editor'),
+    Text('Index 3: Settings'),
+  ];
 
 
   @override
@@ -60,6 +68,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settings'))
         ],
         type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
       // BUTTON FOR TESTING PURPOSE ONLY - REMOVE OR CHANGE ONCE TEST COMPLETED (->AUDIO OVER gRPC)
       floatingActionButton: FloatingActionButton(
@@ -70,4 +80,11 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 }
+
