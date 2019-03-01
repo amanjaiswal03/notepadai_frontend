@@ -18,12 +18,18 @@ dependencies:
 
   # Personally maintained Package:
 <<<<<<< HEAD
+<<<<<<< HEAD
   mic_stream: ^0.0.8
 ||||||| merged common ancestors
   mic_stream: ^0.0.2
 =======
   mic_stream: ^0.0.3
 >>>>>>> Updated mic_stream package to support pause() and resume()
+||||||| merged common ancestors
+  mic_stream: ^0.0.3
+=======
+  mic_stream: ^0.0.7
+>>>>>>> Adapted code to mic_stream v0.0.7
 
   # Audio and Permissions dependencies:
   audioplayers: ^0.8.1

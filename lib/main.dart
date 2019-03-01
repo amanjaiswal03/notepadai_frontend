@@ -6,8 +6,20 @@ import 'package:notepadai_app/routes/homescreen.dart';
 import 'package:notepadai_app/design elements/DiamondBorder.dart';
 
 /* NotepadAI
-  Copy of base application example provided by Google
+  Copy of base application examples provided by Google
  */
+<<<<<<< HEAD
+||||||| merged common ancestors
+
+//TODO: Move to corresponding class
+const int PORT = 12345;
+const String HOSTNAME = "127.0.0.1";
+=======
+
+//TODO: Move to corresponding class
+const int PORT = 50004;
+const String HOSTNAME = "10.0.2.2";
+>>>>>>> Adapted code to mic_stream v0.0.7
 const Color MAIN_COLOR = Colors.cyan;
 
 // Main function running the class containing the whole project
@@ -141,9 +153,9 @@ class HomePage extends StatefulWidget {
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
 
-  /* TESTING PURPOSE ONLY */
+  /// TESTING PURPOSE ONLY ///
   // TODO: stream audio to server using gRPC
-  static int _isPressed = 0;
+  static int _isPressed = 1;
   static bool _isRecording = false;
   Microphone _microphone;
   AudioProcessorClient _client;
@@ -176,13 +188,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _audioStream() async {
-    StreamController<Sample> _sender = new StreamController();
+    StreamController<Samples> _sender = new StreamController();
+
     if (!_isRecording) {
+      print("Start sending stuff to localhost");
       _isRecording = true;
-      _subscriber = (await _microphone.start()).listen((sample) => _sender.add(_convertByteArrayToAudioChunk(sample)));
-      _client.transcriptAudio(_sender.stream);
+      _subscriber = _microphone.start().listen((samples) => _sender.add(_convertByteArrayToAudioChunk(samples)));
+      (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
     }
     else {
+      print("Stop sending stuff");
       _isRecording = false;
       _subscriber.cancel();
       _microphone.stop();
@@ -190,13 +205,13 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _convertByteArrayToAudioChunk (Uint8List sampleIn) {
-    Sample sampleOut = new Sample();
-    sampleOut.setField(1, sampleIn);
-    return sampleOut;
+  _convertByteArrayToAudioChunk (Uint8List samplesIn) {
+    Samples samplesOut = new Samples();
+    samplesOut.setField(1, samplesIn);
+    return samplesOut;
   }
 
-    /* END OF TESTING PART */
+  /// END OF TESTING PART ///
 
   @override
   Widget build(BuildContext context) {
