@@ -36,30 +36,30 @@ class Sample extends $pb.GeneratedMessage {
   void clearChunk() => clearField(1);
 }
 
-class Sentence extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = new $pb.BuilderInfo('Sentence')
-    ..aOS(1, 'msg')
+class Response extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = new $pb.BuilderInfo('Response')
+    ..aOS(1, 'word')
     ..hasRequiredFields = false
   ;
 
-  Sentence() : super();
-  Sentence.fromBuffer(List<int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  Sentence.fromJson(String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  Sentence clone() => new Sentence()..mergeFromMessage(this);
-  Sentence copyWith(void Function(Sentence) updates) => super.copyWith((message) => updates(message as Sentence));
+  Response() : super();
+  Response.fromBuffer(List<int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  Response.fromJson(String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  Response clone() => new Response()..mergeFromMessage(this);
+  Response copyWith(void Function(Response) updates) => super.copyWith((message) => updates(message as Response));
   $pb.BuilderInfo get info_ => _i;
-  static Sentence create() => new Sentence();
-  Sentence createEmptyInstance() => create();
-  static $pb.PbList<Sentence> createRepeated() => new $pb.PbList<Sentence>();
-  static Sentence getDefault() => _defaultInstance ??= create()..freeze();
-  static Sentence _defaultInstance;
-  static void $checkItem(Sentence v) {
-    if (v is! Sentence) $pb.checkItemFailed(v, _i.qualifiedMessageName);
+  static Response create() => new Response();
+  Response createEmptyInstance() => create();
+  static $pb.PbList<Response> createRepeated() => new $pb.PbList<Response>();
+  static Response getDefault() => _defaultInstance ??= create()..freeze();
+  static Response _defaultInstance;
+  static void $checkItem(Response v) {
+    if (v is! Response) $pb.checkItemFailed(v, _i.qualifiedMessageName);
   }
 
-  String get msg => $_getS(0, '');
-  set msg(String v) { $_setString(0, v); }
-  bool hasMsg() => $_has(0);
-  void clearMsg() => clearField(1);
+  String get word => $_getS(0, '');
+  set word(String v) { $_setString(0, v); }
+  bool hasWord() => $_has(0);
+  void clearWord() => clearField(1);
 }
 
