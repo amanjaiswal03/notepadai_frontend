@@ -1,3 +1,6 @@
+import 'src/generated/audioStream.pb.dart';
+import 'src/generated/audioStream.pbgrpc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:notepadai_app/routes/homescreen.dart';
 import 'package:notepadai_app/design elements/DiamondBorder.dart';
