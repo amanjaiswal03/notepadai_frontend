@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:notepadai_app/proto/audioStream.pbgrpc.dart';
-import 'package:notepadai_app/proto/audioStream.pb.dart';
+import 'package:notepadai_app/lib/src/generated/audioStream.pbgrpc.dart';
+import 'package:notepadai_app/lib/src/generated/audioStream.pb.dart';
 import 'package:grpc/grpc.dart';
 import 'package:mic_stream/mic_stream.dart';
 
