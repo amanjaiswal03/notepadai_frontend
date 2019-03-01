@@ -1,9 +1,10 @@
+import 'src/generated/audioStream.pb.dart';
+import 'src/generated/audioStream.pbgrpc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:notepadai_app/lib/src/generated/audioStream.pbgrpc.dart';
-import 'package:notepadai_app/lib/src/generated/audioStream.pb.dart';
-import 'package:grpc/grpc.dart';
 import 'package:mic_stream/mic_stream.dart';
+import 'package:grpc/grpc.dart';
 
 import 'dart:typed_data';
 import 'dart:async';
