@@ -11,10 +11,10 @@ const Sample$json = const {
   ],
 };
 
-const Sentence$json = const {
-  '1': 'Sentence',
+const Response$json = const {
+  '1': 'Response',
   '2': const [
-    const {'1': 'msg', '3': 1, '4': 1, '5': 9, '10': 'msg'},
+    const {'1': 'word', '3': 1, '4': 1, '5': 9, '10': 'word'},
   ],
 };
 
