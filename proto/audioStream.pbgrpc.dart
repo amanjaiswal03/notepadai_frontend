@@ -6,20 +6,21 @@
 
 import 'dart:async' as $async;
 
-import 'package:grpc/service_api.dart' as $grpc;
+import 'package:grpc/grpc.dart' as $grpc;
 import 'audioStream.pb.dart';
 export 'audioStream.pb.dart';
 
 class AudioProcessorClient extends $grpc.Client {
-  static final _$transcriptAudio = new $grpc.ClientMethod<Samples, Response>(
+  static final _$transcriptAudio = new $grpc.ClientMethod<Sample, Response>(
       '/AudioProcessor/TranscriptAudio',
-      (Samples value) => value.writeToBuffer(),
+      (Sample value) => value.writeToBuffer(),
       (List<int> value) => new Response.fromBuffer(value));
 
   AudioProcessorClient($grpc.ClientChannel channel, {$grpc.CallOptions options})
       : super(channel, options: options);
 
-  $grpc.ResponseStream<Response> transcriptAudio($async.Stream<Samples> request,
+  $grpc.ResponseStream<Response> transcriptAudio(
+      $async.Stream<Sample> request,
       {$grpc.CallOptions options}) {
     final call = $createCall(_$transcriptAudio, request, options: options);
     return new $grpc.ResponseStream(call);
@@ -30,15 +31,15 @@ abstract class AudioProcessorServiceBase extends $grpc.Service {
   String get $name => 'AudioProcessor';
 
   AudioProcessorServiceBase() {
-    $addMethod(new $grpc.ServiceMethod<Samples, Response>(
+    $addMethod(new $grpc.ServiceMethod<Sample, Response>(
         'TranscriptAudio',
         transcriptAudio,
         true,
         true,
-        (List<int> value) => new Samples.fromBuffer(value),
+        (List<int> value) => new Sample.fromBuffer(value),
         (Response value) => value.writeToBuffer()));
   }
 
   $async.Stream<Response> transcriptAudio(
-      $grpc.ServiceCall call, $async.Stream<Samples> request);
+      $grpc.ServiceCall call, $async.Stream<Sample> request);
 }
