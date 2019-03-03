@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
   static int _isPressed = 0;
+  int _selectedIndex = 0;
 
   /* Test purposes only: */
   static final _floatingButtonState = [
@@ -44,6 +45,12 @@ class _HomePageState extends State<HomePage> {
     //Stream<String> audioStream = new Stream.fromFuture();
   }
 
+  final _widgetOptions = [
+    Text('Index 0: All Notes'),
+    Text('Index 1: Favorites'),
+    Text('Index 2: Editor'),
+    Text('Index 3: Settings'),
+  ];
 
 
   @override
@@ -60,6 +67,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settings'))
         ],
         type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: _buttonColor,
@@ -69,4 +78,11 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 }
+
