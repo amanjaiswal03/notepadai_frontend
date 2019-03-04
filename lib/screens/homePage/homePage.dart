@@ -20,6 +20,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static int _isPressed = 0;
 
+  int _selectedIndex = 1;
+
+  final _widgetOptions = [
+    Text('Index 0: All Notes'),
+    Text('Index 1: Favorites'),
+    Text('Index 2: Editor'),
+    Text('Index 3: Settings'),
+  ];
+
   /* Test purposes only: */
   static final _floatingButtonState = [
     Icon(Icons.keyboard_voice),
@@ -52,6 +61,9 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text('NotePadAI'),
       ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('All Notes')),
@@ -60,6 +72,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settings'))
         ],
         type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: _buttonColor,
@@ -68,5 +82,11 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Start streaming audio',
       ),
     );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }

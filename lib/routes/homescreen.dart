@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
+      body: new Center(child:  Text("hey")),
       bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('All Notes')),
