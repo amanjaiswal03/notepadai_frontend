@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
 //import 'package:notepadai_app/design elements/DiamondBorder.dart';
-//import 'package:audioplayers/audioplayers.dart';
-//import 'package:audio_recorder/audio_recorder.dart';
-//import 'package:notepadai_app/proto/audioStream.pbgrpc.dart';
-//import 'package:notepadai_app/proto/audioStream.pb.dart';
-//import 'package:grpc/grpc.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -18,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
+<<<<<<< HEAD
   static int _isPressed = 0;
   int _selectedIndex = 0;
 
@@ -52,6 +48,8 @@ class _HomePageState extends State<HomePage> {
     Text('Index 3: Settings'),
   ];
 
+=======
+>>>>>>> 49a2d51ee0a6858262c191ba08a5b78c98900672
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +68,6 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: _buttonColor,
-        child: _buttonIcon,
-        onPressed: _streamAudio,
-        tooltip: 'Start streaming audio',
       ),
     );
   }
