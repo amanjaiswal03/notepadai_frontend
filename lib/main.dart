@@ -17,7 +17,7 @@ const String HOSTNAME = "127.0.0.1";
 =======
 
 //TODO: Move to corresponding class
-const int PORT = 50004;
+const int PORT = 50000;
 const String HOSTNAME = "10.0.2.2";
 >>>>>>> Adapted code to mic_stream v0.0.7
 const Color MAIN_COLOR = Colors.cyan;
@@ -155,15 +155,17 @@ class _HomePageState extends State<HomePage> {
 
   /// TESTING PURPOSE ONLY ///
   // TODO: stream audio to server using gRPC
-  static int _isPressed = 1;
+  static int _isPressed = 0;
   static bool _isRecording = false;
   Microphone _microphone;
+  ClientChannel _channel;
   AudioProcessorClient _client;
   StreamSubscription<Uint8List> _subscriber;
 
-  void _init() async {
+  void _init() {
     _microphone = new Microphone();
-    _client = new AudioProcessorClient(new ClientChannel(HOSTNAME, port: PORT));
+    _channel = new ClientChannel(HOSTNAME, port: PORT, options: ChannelOptions(credentials: ChannelCredentials.insecure()));
+    _client = new AudioProcessorClient(_channel, options: new CallOptions(timeout: new Duration(seconds: 30)));
   }
 
   static final _floatingButtonState = [
@@ -180,9 +182,9 @@ class _HomePageState extends State<HomePage> {
 
   void _floatingButtonPress() {
     setState(() {
+      _isPressed = (_isPressed + 1) % 2;
       _buttonIcon = _floatingButtonState[_isPressed];
       _buttonColor = _floatingButtonColor[_isPressed];
-      _isPressed = (_isPressed + 1) % 2;
     });
     _audioStream();
   }
@@ -191,17 +193,19 @@ class _HomePageState extends State<HomePage> {
     StreamController<Samples> _sender = new StreamController();
 
     if (!_isRecording) {
-      print("Start sending stuff to localhost");
+      print("Start microphone");
       _isRecording = true;
       _subscriber = _microphone.start().listen((samples) => _sender.add(_convertByteArrayToAudioChunk(samples)));
+      print("Start transmission...");
       (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
     }
     else {
-      print("Stop sending stuff");
+      print("Stop transmission");
       _isRecording = false;
       _subscriber.cancel();
       _microphone.stop();
       _sender.close();
+      _channel.shutdown();
     }
   }
 
