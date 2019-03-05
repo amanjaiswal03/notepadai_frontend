@@ -14,7 +14,7 @@ import 'dart:async';
  */
 
 //TODO: Move to corresponding class
-const int PORT = 50000;
+const int PORT = 12345;
 const String HOSTNAME = "10.0.2.2";
 const Color MAIN_COLOR = Colors.cyan;
 
@@ -52,7 +52,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   /// TESTING PURPOSE ONLY ///
-  // TODO: stream audio to server using gRPC
   static int _isPressed = 0;
   static bool _isRecording = false;
   Microphone _microphone;
@@ -95,7 +94,13 @@ class _HomePageState extends State<HomePage> {
       _isRecording = true;
       _subscriber = _microphone.start().listen((samples) => _sender.add(_convertByteArrayToAudioChunk(samples)));
       print("Start transmission...");
-      (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
+      try {
+        (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
+      }
+      catch(e){
+        print(e);
+        return;
+      }
     }
     else {
       print("Stop transmission");
