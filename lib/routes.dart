@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:notepadai_app/screens/homePage/index.dart';
+import 'package:notepadai_app/screens/favorites/index.dart';
 
 class Routes {
   final routes = <String, WidgetBuilder>{
-    '/': (BuildContext context) => new HomePage()
+    '/': (BuildContext context) => new HomePage(title: "string"),
+    '/favorites': (BuildContext context) => new favorites(title: "favorites")
   };
 
   Routes() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
+import 'package:notepadai_app/widgets/bottomBar.dart';
 //import 'package:notepadai_app/design elements/DiamondBorder.dart';
 //import 'package:audioplayers/audioplayers.dart';
 //import 'package:audio_recorder/audio_recorder.dart';
@@ -18,16 +19,11 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
+
   static int _isPressed = 0;
 
   int _selectedIndex = 1;
 
-  final _widgetOptions = [
-    Text('Index 0: All Notes'),
-    Text('Index 1: Favorites'),
-    Text('Index 2: Editor'),
-    Text('Index 3: Settings'),
-  ];
 
   /* Test purposes only: */
   static final _floatingButtonState = [
@@ -59,22 +55,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('NotePadAI'),
+        title: Text(widget.title),
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: Text('homescreen'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('All Notes')),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_border), title: Text('Favorites')),
-          BottomNavigationBarItem(icon: Icon(Icons.edit), title: Text('Editor')),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settings'))
-        ],
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: new bottomBar(selectedIndex: 0),
       floatingActionButton: FloatingActionButton(
         backgroundColor: _buttonColor,
         child: _buttonIcon,
