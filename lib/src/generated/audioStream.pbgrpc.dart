@@ -12,7 +12,7 @@ export 'audioStream.pb.dart';
 
 class AudioProcessorClient extends $grpc.Client {
   static final _$transcriptAudio = new $grpc.ClientMethod<Samples, Response>(
-      '/AudioProcessor/TranscriptAudio',
+      '/AudioProcessor/transcriptAudio',
       (Samples value) => value.writeToBuffer(),
       (List<int> value) => new Response.fromBuffer(value));
 
@@ -31,7 +31,7 @@ abstract class AudioProcessorServiceBase extends $grpc.Service {
 
   AudioProcessorServiceBase() {
     $addMethod(new $grpc.ServiceMethod<Samples, Response>(
-        'TranscriptAudio',
+        'transcriptAudio',
         transcriptAudio,
         true,
         true,
