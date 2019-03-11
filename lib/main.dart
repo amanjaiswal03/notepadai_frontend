@@ -15,7 +15,7 @@ import 'dart:async';
 
 //TODO: Move to corresponding class
 const int PORT = 12345;
-const String HOSTNAME = "10.0.0.19";
+const String HOST = "192.168.44.103";
 const Color MAIN_COLOR = Colors.cyan;
 
 
@@ -56,13 +56,12 @@ class _HomePageState extends State<HomePage> {
   static bool _isRecording = false;
   Microphone _microphone;
   ClientChannel _channel;
-  AudioProcessorClient _client;
+  Client _client;
   StreamSubscription<Uint8List> _subscriber;
 
   void _init() {
     _microphone = new Microphone();
-    _channel = new ClientChannel(HOSTNAME, port: PORT);
-    _client = new AudioProcessorClient(_channel, options: new CallOptions(timeout: new Duration(seconds: 30)));
+    _client = new Client(HOST, PORT);
   }
 
   static final _floatingButtonState = [
@@ -92,10 +91,9 @@ class _HomePageState extends State<HomePage> {
     if (!_isRecording) {
       print("Start microphone");
       _isRecording = true;
-      _subscriber = _microphone.start().listen((samples) => _sender.add(_convertByteArrayToAudioChunk(samples)));
 
       print("Start transmission...");
-      (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
+      _client.transcriptAudio(_microphone.start()).listen((response) => print(response));
     }
     else {
       print("Stop transmission");
@@ -105,12 +103,6 @@ class _HomePageState extends State<HomePage> {
       _sender.close();
       _channel.shutdown();
     }
-  }
-
-  _convertByteArrayToAudioChunk (Uint8List samplesIn) {
-    Samples samplesOut = new Samples();
-    samplesOut.setField(1, samplesIn);
-    return samplesOut;
   }
 
   /// END OF TESTING PART ///
@@ -130,5 +122,32 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Start streaming audio',
       ),
     );
+  }
+}
+
+class Client {
+  ClientChannel channel;
+  AudioProcessorClient stub;
+  CallOptions options;
+
+
+  Client(String host, int port) {
+    channel = new ClientChannel(host, port: port, options: const ChannelOptions(credentials: const ChannelCredentials.insecure()));
+    options = new CallOptions(timeout: Duration(seconds: 30));
+    stub = new AudioProcessorClient(channel, options: options);
+  }
+
+  Stream<String> transcriptAudio(Stream<Uint8List> audio) async* {
+    yield* _responseToString(stub.transcriptAudio(audio.map((samples) => _audioToSamples(samples)), options: options));
+  }
+
+  Stream<String> _responseToString(ResponseStream<dynamic> response) async* {
+    yield* response.map((value) => value.word);
+  }
+
+  Samples _audioToSamples(List<int> input) {
+    Samples samples = new Samples();
+    samples.chunk = input;
+    return samples;
   }
 }
