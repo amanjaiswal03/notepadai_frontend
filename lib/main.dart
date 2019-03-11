@@ -138,7 +138,7 @@ class Client {
   }
 
   Stream<String> transcriptAudio(Stream<Uint8List> audio) async* {
-    yield* _responseToString(stub.transcriptAudio(audio.map((samples) => _audioToSamples(samples)), options: options));
+    yield* _responseToString(stub.transcriptAudio(audio.map((audio) => _audioToSamples(audio))));
   }
 
   Stream<String> _responseToString(ResponseStream<dynamic> response) async* {
