@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
 
   void _init() {
     _microphone = new Microphone();
-    _channel = new ClientChannel(HOSTNAME, port: PORT, options: ChannelOptions(credentials: ChannelCredentials.insecure()));
+    _channel = new ClientChannel(HOSTNAME, port: PORT);
     _client = new AudioProcessorClient(_channel, options: new CallOptions(timeout: new Duration(seconds: 30)));
   }
 
@@ -195,14 +195,9 @@ class _HomePageState extends State<HomePage> {
       print("Start microphone");
       _isRecording = true;
       _subscriber = _microphone.start().listen((samples) => _sender.add(_convertByteArrayToAudioChunk(samples)));
+
       print("Start transmission...");
-      try {
-        (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
-      }
-      catch(e){
-        print(e);
-        return;
-      }
+      (_client.transcriptAudio(_sender.stream)).listen((response) => print(response.word));
     }
     else {
       print("Stop transmission");
@@ -236,7 +231,6 @@ class _HomePageState extends State<HomePage> {
         onPressed: _floatingButtonPress,
         tooltip: 'Start streaming audio',
       ),
->>>>>>> Updated mic_stream package to support pause() and resume()
     );
   }
 }
