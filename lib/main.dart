@@ -11,7 +11,7 @@ import 'package:notepadai_app/design elements/DiamondBorder.dart';
 
 //TODO: Move to corresponding class
 const int PORT = 12345;
-const String HOSTNAME = "10.0.0.19";
+const String HOST = "192.168.44.103";
 const Color MAIN_COLOR = Colors.cyan;
 
 
