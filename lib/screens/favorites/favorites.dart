@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
 import 'package:notepadai_app/widgets/bottomBar.dart';
+import 'package:notepadai_app/screens/favorites/widgets/custom_float.dart';
 
 class favorites extends StatefulWidget {
   favorites({Key key, this.title}) : super(key: key);
@@ -107,12 +108,16 @@ class _favoritesState extends State<favorites> {
         child: Text("favorites"),
       ),
       bottomNavigationBar: myBottomBar(),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: _buttonColor,
-        child: _buttonIcon,
-        onPressed: _streamAudio,
-        tooltip: 'Start streaming audio',
+      floatingActionButton: CustomFloat(
+        builder: Text(
+          "5",
+          style: TextStyle(color: Colors.white, fontSize: 10.0),
+
+        ),
+        icon: Icons.list,
+        qrCallback: () {},
       ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
   }
 }
