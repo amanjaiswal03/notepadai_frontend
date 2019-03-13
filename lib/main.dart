@@ -26,5 +26,3 @@ class NotepadAI extends StatelessWidget {
     );
   }
 }
-
-// Starting screen upon run
