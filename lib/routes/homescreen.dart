@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 
 // Subclass of the HomePage specifying style and interactive elements and putting them in a grid
 class _HomePageState extends State<HomePage> {
-<<<<<<< HEAD
   static int _isPressed = 0;
   int _selectedIndex = 0;
 
@@ -48,9 +47,6 @@ class _HomePageState extends State<HomePage> {
     Text('Index 3: Settings'),
   ];
 
-=======
->>>>>>> 49a2d51ee0a6858262c191ba08a5b78c98900672
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.list), title: Text('All Notes')),
           BottomNavigationBarItem(icon: Icon(Icons.favorite_border), title: Text('Favorites')),
           BottomNavigationBarItem(icon: Icon(Icons.edit), title: Text('Editor')),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settings'))
+          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Settigs'))
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,

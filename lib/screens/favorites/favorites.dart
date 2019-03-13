@@ -64,7 +64,7 @@ class _favoritesState extends State<favorites> {
               onTap: () {},
               child: Center(
                 child: new Text(
-                  "ADD TO WISHLIST",
+                  "All Notes",
                   style: new TextStyle(
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold,
@@ -79,12 +79,14 @@ class _favoritesState extends State<favorites> {
           SizedBox(
             height: double.infinity,
             child: new InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
               radius: 10.0,
               splashColor: Colors.yellow,
               child: Center(
                 child: new Text(
-                  "ORDER PAGE",
+                  "Settings",
                   style: new TextStyle(
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold,
@@ -109,13 +111,10 @@ class _favoritesState extends State<favorites> {
       ),
       bottomNavigationBar: myBottomBar(),
       floatingActionButton: CustomFloat(
-        builder: Text(
-          "5",
-          style: TextStyle(color: Colors.white, fontSize: 10.0),
+        icon: Icons.mic,
+        qrCallback: () {
 
-        ),
-        icon: Icons.list,
-        qrCallback: () {},
+        },
       ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
