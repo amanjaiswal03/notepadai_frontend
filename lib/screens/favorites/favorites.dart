@@ -61,7 +61,9 @@ class _favoritesState extends State<favorites> {
             child: new InkWell(
               radius: 10.0,
               splashColor: Colors.yellow,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
               child: Center(
                 child: new Text(
                   "All Notes",
