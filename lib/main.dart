@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:notepadai_app/routes/homescreen.dart';
+import 'package:notepadai_app/design elements/DiamondBorder.dart';
 
 /* NotepadAI
-  Copy of base application examples provided by Google
+  Copy of base application example provided by Google
  */
-
 const Color MAIN_COLOR = Colors.cyan;
 
 // Main function running the class containing the whole project
@@ -22,29 +22,7 @@ class NotepadAI extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: MAIN_COLOR,
       ),
-      home: HomePage(title: 'HomePage - NotepadAI'),
-    );
-  }
-}
-
-// Starting screen upon run
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-// Subclass of the HomePage specifying style and interactive elements and putting them in a grid
-class _HomePageState extends State<HomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      home: HomePage(title: 'All Notes'),
     );
   }
 }
