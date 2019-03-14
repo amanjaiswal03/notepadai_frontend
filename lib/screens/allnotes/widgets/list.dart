@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notepadai_app/screens/allnotes/widgets/note-item.dart';
 
 class ListViewTranscripts extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class ListViewTranscripts extends StatefulWidget {
 
 class _ListViewTranscriptsState extends State<ListViewTranscripts> {
   @override
-  List<String> litems = ['hey', 'was', 'doch'];
+  List<String> litems = ['hey', 'was', 'doch', 'aklsdj', 'asdas', 'asdasd', 'alksdjaslkdj', 'aslkdj', 'aslkdj', 'asklödjö', 'asdök'];
   @override
   Widget build(BuildContext context) {
     return _buildSuggestions();
@@ -17,7 +18,7 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
       padding: const EdgeInsets.all(10.0),
       itemCount: litems.length,
       itemBuilder: (context, i) {
-        return _buildRow(i);
+        return new noteItem();
       },
     );
   }
