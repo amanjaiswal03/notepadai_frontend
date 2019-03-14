@@ -15,9 +15,9 @@ class _bottomBarState extends State<bottomBar> {
   final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
 
   final _widgetOptions = [
-    '/favorites',
+    '/allnotes',
     '/',
-    '/favorites',
+    '/allnotes',
     '/',
   ];
 

@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
 import 'package:notepadai_app/widgets/bottomBar.dart';
-import 'package:notepadai_app/screens/favorites/widgets/custom_float.dart';
+import 'package:notepadai_app/screens/allnotes/widgets/custom_float.dart';
+import 'package:notepadai_app/screens/allnotes/widgets/list.dart';
 
-class favorites extends StatefulWidget {
-  favorites({Key key, this.title}) : super(key: key);
+class allnotes extends StatefulWidget {
+  allnotes({Key key, this.title}) : super(key: key);
   final String title;
   @override
-  _favoritesState createState() => _favoritesState();
+  _allnotesState createState() => _allnotesState();
 }
 
-class _favoritesState extends State<favorites> {
+class _allnotesState extends State<allnotes> {
 
   static int _isPressed = 0;
 
@@ -109,7 +110,7 @@ class _favoritesState extends State<favorites> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text("favorites"),
+        child: new ListViewTranscripts(),
       ),
       bottomNavigationBar: myBottomBar(),
       floatingActionButton: CustomFloat(
