@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
-import 'package:notepadai_app/widgets/bottomBar.dart';
-import 'package:notepadai_app/screens/allnotes/widgets/custom_float.dart';
-import 'package:notepadai_app/screens/allnotes/widgets/list.dart';
-import 'widgets/searchbar.dart';
+import 'widgets/custom_float.dart';
+import 'widgets/transcript.dart';
+import 'widgets/appbar.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
@@ -51,8 +50,8 @@ class _recordingState extends State<recording> {
             // new Color.fromRGBO(103, 218, 255, 1.0),
             // new Color.fromRGBO(3, 169, 244, 1.0),
             // new Color.fromRGBO(0, 122, 193, 1.0),
-            Colors.blueGrey.shade800,
-            Colors.black87,
+            Colors.blue,
+            Colors.blue,
           ])),
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -67,13 +66,15 @@ class _recordingState extends State<recording> {
                 Navigator.pushNamed(context, '/');
               },
               child: Center(
-                child: new Text(
-                  "All Notes",
-                  style: new TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.pause, color: Colors.white,),
+                    Text(
+                      "pause",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )
               ),
             ),
           ),
@@ -89,12 +90,16 @@ class _recordingState extends State<recording> {
               radius: 10.0,
               splashColor: Colors.yellow,
               child: Center(
-                child: new Text(
-                  "Settings",
-                  style: new TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                child: Center(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.highlight, color: Colors.white,),
+                        Text(
+                          "highlighter",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    )
                 ),
               ),
             ),
@@ -107,15 +112,15 @@ class _recordingState extends State<recording> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new SearchList(),
+        appBar: new appbar(),
         body: Center(
-          child: new ListViewTranscripts(),
+          child: new transcript(),
         ),
         bottomNavigationBar: myBottomBar(),
         floatingActionButton: CustomFloat(
-          icon: Icons.mic,
+          icon: Icons.stop,
           qrCallback: () {
-
+            Navigator.pushNamed(context, '/allnotes');
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked

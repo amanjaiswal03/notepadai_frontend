@@ -50,8 +50,8 @@ class _allnotesState extends State<allnotes> {
             // new Color.fromRGBO(103, 218, 255, 1.0),
             // new Color.fromRGBO(3, 169, 244, 1.0),
             // new Color.fromRGBO(0, 122, 193, 1.0),
-            Colors.blueGrey.shade800,
-            Colors.black87,
+            Colors.blue,
+            Colors.blue,
           ])),
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -116,7 +116,7 @@ class _allnotesState extends State<allnotes> {
       floatingActionButton: CustomFloat(
         icon: Icons.mic,
         qrCallback: () {
-
+          Navigator.pushNamed(context, '/recording');
         },
       ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
