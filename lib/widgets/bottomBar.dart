@@ -16,7 +16,7 @@ class _bottomBarState extends State<bottomBar> {
 
   final _widgetOptions = [
     '/allnotes',
-    '/',
+    '/singlenoteTranscript',
     '/recording',
     '/',
   ];
