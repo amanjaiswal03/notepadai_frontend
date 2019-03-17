@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:notepadai_app/screens/homePage/index.dart';
-import 'package:notepadai_app/screens/favorites/index.dart';
+import 'package:notepadai_app/screens/allnotes/index.dart';
+import 'package:notepadai_app/screens/recording/index.dart';
 
 class Routes {
   final routes = <String, WidgetBuilder>{
     '/': (BuildContext context) => new HomePage(title: "string"),
-    '/favorites': (BuildContext context) => new favorites(title: "favorites")
+    '/allnotes': (BuildContext context) => new allnotes(title: "allnotes"),
+    '/recording': (BuildContext context) => new recording(title: "recording")
   };
 
   Routes() {
