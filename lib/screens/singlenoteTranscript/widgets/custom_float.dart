@@ -20,8 +20,8 @@ class CustomFloat extends StatelessWidget {
               // new Color.fromRGBO(103, 218, 255, 1.0),
               // new Color.fromRGBO(3, 169, 244, 1.0),
               // new Color.fromRGBO(0, 122, 193, 1.0),
-              Colors.green,
-              Colors.green,
+              Colors.blue,
+              Colors.blue,
             ])),
         child: Stack(
           fit: StackFit.expand,

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:notepadai_app/main.dart';
 import 'widgets/custom_float.dart';
-import 'widgets/transcript.dart';
+import 'widgets/bulletPointlist.dart';
 import 'widgets/searchbar.dart';
 
-class singlenoteTranscript extends StatefulWidget {
-  singlenoteTranscript({Key key, this.title}) : super(key: key);
+class singlenoteBulletPointList extends StatefulWidget {
+  singlenoteBulletPointList({Key key, this.title}) : super(key: key);
   final String title;
   @override
-  _singlenoteTranscriptState createState() => _singlenoteTranscriptState();
+  _singlenoteBulletPointListState createState() => _singlenoteBulletPointListState();
 }
 
-class _singlenoteTranscriptState extends State<singlenoteTranscript> {
+class _singlenoteBulletPointListState extends State<singlenoteBulletPointList> {
 
   static int _isPressed = 0;
 
@@ -70,9 +70,9 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
                     children: <Widget>[
                       Text("all notes",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
                           ))
                     ],
                   )
@@ -117,13 +117,13 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
     return Scaffold(
         appBar: new SearchList(title: widget.title),
         body: Center(
-          child: new transcript(),
+          child: new bulletPointlist(),
         ),
         bottomNavigationBar: myBottomBar(),
         floatingActionButton: CustomFloat(
-          icon: Icons.format_list_bulleted,
+          icon: Icons.subject,
           qrCallback: () {
-            Navigator.pushNamed(context, '/singlenoteBulletPointList');
+            Navigator.pushNamed(context, '/singlenoteTranscript');
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
