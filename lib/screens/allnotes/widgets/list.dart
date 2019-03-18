@@ -18,7 +18,12 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
       padding: const EdgeInsets.all(10.0),
       itemCount: litems.length,
       itemBuilder: (context, i) {
-        return new noteItem();
+        return new GestureDetector(
+          onTap:() {
+            Navigator.pushNamed(context, "/singlenoteTranscript");
+          },
+          child: noteItem()
+        );
       },
     );
   }

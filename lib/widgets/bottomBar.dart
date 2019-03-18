@@ -18,7 +18,7 @@ class _bottomBarState extends State<bottomBar> {
     '/allnotes',
     '/singlenoteTranscript',
     '/recording',
-    '/',
+    '/singlenoteBulletPointList',
   ];
 
   @override
