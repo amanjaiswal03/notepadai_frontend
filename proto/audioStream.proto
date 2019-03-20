@@ -5,16 +5,16 @@ syntax = "proto3";
 
 // Interface to server
 service AudioProcessor {
-    rpc TranscriptAudio (stream AudioChunk) returns (stream Sentence);
+    rpc transcriptAudio (stream Samples) returns (stream Response);
 }
 
 // Used to send audio chunks to the server
-message AudioChunk {
+message Samples {
     bytes chunk = 1;
 }
 
 // Used to return text to the user
-message Sentence {
+message Response {
     // One sentence (or sequence of words) recognized
-    string msg = 1;
+    string word = 1;
 }
