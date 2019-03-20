@@ -31,16 +31,17 @@ class _bottomBarState extends State<bottomBar> {
                 radius: 10.0,
                 splashColor: Colors.yellow,
                 onTap: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(context, '/allnotes');
                 },
                 child: Center(
                     child: Row(
                       children: <Widget>[
-                        Icon(Icons.pause, color: Colors.white,),
-                        Text(
-                          "pause",
-                          style: TextStyle(color: Colors.white),
-                        ),
+                        Text("all notes",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                            ))
                       ],
                     )
                 ),
@@ -61,10 +62,12 @@ class _bottomBarState extends State<bottomBar> {
                   child: Center(
                       child: Row(
                         children: <Widget>[
-                          Icon(Icons.highlight, color: Colors.white,),
-                          Text(
-                            "highlighter",
-                            style: TextStyle(color: Colors.white),
+                          new Text(
+                            "Settings",
+                            style: new TextStyle(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
                         ],
                       )

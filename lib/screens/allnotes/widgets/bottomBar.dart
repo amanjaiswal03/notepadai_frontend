@@ -34,15 +34,13 @@ class _bottomBarState extends State<bottomBar> {
                   Navigator.pushNamed(context, '/');
                 },
                 child: Center(
-                    child: Row(
-                      children: <Widget>[
-                        Icon(Icons.pause, color: Colors.white,),
-                        Text(
-                          "pause",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    )
+                  child: new Text(
+                    "All Notes",
+                    style: new TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -58,16 +56,12 @@ class _bottomBarState extends State<bottomBar> {
                 radius: 10.0,
                 splashColor: Colors.yellow,
                 child: Center(
-                  child: Center(
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.highlight, color: Colors.white,),
-                          Text(
-                            "highlighter",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      )
+                  child: new Text(
+                    "Settings",
+                    style: new TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ),
               ),
