@@ -17,9 +17,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Personally maintained Package:
-  mic_stream: ^0.0.8
-
   # Audio and Permissions dependencies:
   audioplayers: ^0.8.1
   simple_permissions: ^0.1.9
@@ -27,6 +24,13 @@ dependencies:
   # gRPC and Protobuf
   protobuf: ^0.13.3
   grpc: ^1.0.1
+
+  #date
+  intl: ^0.15.7
+
+
+  # Mic Stream
+  mic_stream: ^0.1.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
