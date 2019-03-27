@@ -13,7 +13,6 @@ class allnotes extends StatefulWidget {
 }
 
 class _allnotesState extends State<allnotes> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

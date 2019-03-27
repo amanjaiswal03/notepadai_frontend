@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class SearchList extends StatefulWidget implements PreferredSizeWidget{
   Size get preferredSize => new Size.fromHeight(kToolbarHeight);
-  SearchList({Key key, this.title}) : super(key: key);
+  SearchList(this.title);
   final String title;
   @override
   _SearchListState createState() => new _SearchListState();
@@ -20,7 +20,7 @@ class _SearchListState extends State<SearchList>
           alignment: Alignment.centerLeft,
           child: Container(
             child: Text(
-              "Biology Lecture - Myosis",
+              widget.title,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24.0,
