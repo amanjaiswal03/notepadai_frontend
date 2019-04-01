@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notepadai_app/screens/allnotes/widgets/note-item.dart';
+import 'package:notepadai_app/screens/allnotes/widgets/note-card.dart';
 import 'package:notepadai_app/models/Note.dart';
 import 'dart:async';
 
@@ -50,19 +50,19 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
           return new ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
-              return new Column(
-                children: <Widget>[
-                  new GestureDetector(
-                      onTap: (){
-                        Navigator.pushNamed(context, '/singlenoteTranscript', arguments: snapshot.data[index]);
-                      },
-                      child: new Column(
-                        children: [
-                          new noteItem(title: snapshot.data[index]["title"], text: snapshot.data[index]["text"])
-                        ]
-                    ),
-                  )
-                ]
+              return new Container(
+                margin: EdgeInsets.only(bottom: 12),
+                child: Column(
+                    children: <Widget>[
+                      new GestureDetector(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/singlenoteTranscript', arguments: snapshot.data[index]);
+                          },
+                          // new noteItem(title: snapshot.data[index]["title"], text: snapshot.data[index]["text"]) --old item
+                          child: new noteItem()
+                      )
+                    ]
+                ),
               );
             }
           );

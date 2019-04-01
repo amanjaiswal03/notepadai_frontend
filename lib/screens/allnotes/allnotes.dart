@@ -16,12 +16,52 @@ class _allnotesState extends State<allnotes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: Text(widget.title),
+      backgroundColor: Color(0xFFF2EEEE),
+      body: Column(
+        children: <Widget>[
+          Container (
+            color: Color(0xFF354CD3),
+            height: 100,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                      margin: EdgeInsets.only(top: 25, left: 12, right: 12),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                  "All Notes",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24
+                                  )
+                              ),
+                              Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 32,
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                  )
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: new ListViewTranscripts(),
+          ),
+        ],
       ),
-      body: Center(
-        child: new ListViewTranscripts(),
-      ),
+
+
       bottomNavigationBar: new bottomBar(),
       floatingActionButton: CustomFloat(
         icon: Icons.mic,

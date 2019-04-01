@@ -12,14 +12,14 @@ class _bottomBarState extends State<bottomBar> {
       clipBehavior: Clip.antiAlias,
       shape: CircularNotchedRectangle(),
       child: Ink(
-        height: 50.0,
+        height: 65.0,
         decoration: new BoxDecoration(
             gradient: new LinearGradient(colors: [
               // new Color.fromRGBO(103, 218, 255, 1.0),
               // new Color.fromRGBO(3, 169, 244, 1.0),
               // new Color.fromRGBO(0, 122, 193, 1.0),
-              Colors.blue,
-              Colors.blue,
+             Color(0xFFFFFFFF),
+             Color(0xFFFFFFFF)
             ])),
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -34,13 +34,19 @@ class _bottomBarState extends State<bottomBar> {
                   Navigator.pushNamed(context, '/');
                 },
                 child: Center(
-                  child: new Text(
-                    "All Notes",
-                    style: new TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      new Icon(Icons.dashboard),
+                      new Text(
+                        "Categorize",
+                        style: new TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ],
+                  )
                 ),
               ),
             ),
@@ -56,13 +62,19 @@ class _bottomBarState extends State<bottomBar> {
                 radius: 10.0,
                 splashColor: Colors.yellow,
                 child: Center(
-                  child: new Text(
-                    "Settings",
-                    style: new TextStyle(
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        new Icon(Icons.settings),
+                        new Text(
+                          "Settings",
+                          style: new TextStyle(
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      ],
+                    )
                 ),
               ),
             ),

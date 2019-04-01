@@ -20,7 +20,7 @@ class _SearchListState extends State<SearchList>
           alignment: Alignment.centerLeft,
           child: Container(
             child: Text(
-              widget.title,
+              "title",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24.0,
