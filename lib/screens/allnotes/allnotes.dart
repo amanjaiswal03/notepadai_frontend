@@ -56,7 +56,9 @@ class _allnotesState extends State<allnotes> {
             ),
           ),
           Expanded(
-            child: new ListViewTranscripts(),
+            child: new Center(
+              child: Text("This App is under Construction"),
+            )
           ),
         ],
       ),
