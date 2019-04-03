@@ -12,6 +12,7 @@ class _noteItemState extends State<noteItem> {
   Widget build(BuildContext context) {
     return Container(
         height: 95,
+        margin: EdgeInsets.all(2),
           /* box shadow
           decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
@@ -20,7 +21,7 @@ class _noteItemState extends State<noteItem> {
             new BoxShadow(
               color: Color(0xFF2F4DFF).withOpacity(0.4),
               blurRadius: 10.0,
-              offset: new Offset(0, 5),
+              offset: new Offset(0, 0),
             ),
           ]), */
         child: Row(
@@ -34,7 +35,6 @@ class _noteItemState extends State<noteItem> {
                   ),
                   child: Container(
                     padding: EdgeInsets.all(15),
-                    height: 200,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
