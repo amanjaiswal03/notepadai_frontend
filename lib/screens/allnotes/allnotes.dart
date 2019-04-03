@@ -59,7 +59,7 @@ class _allnotesState extends State<allnotes> {
             ),
           ),
           Expanded(
-            child: new ListViewTranscripts(),
+            child: ListViewTranscripts()
           ),
         ],
       ),
