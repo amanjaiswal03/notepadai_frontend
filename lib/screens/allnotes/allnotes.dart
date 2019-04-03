@@ -15,7 +15,10 @@ class allnotes extends StatefulWidget {
 class _allnotesState extends State<allnotes> {
   @override
   Widget build(BuildContext context) {
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Scaffold(
+        primary: true,
       backgroundColor: Color(0xFFF2EEEE),
       body: Column(
         children: <Widget>[
@@ -27,7 +30,7 @@ class _allnotesState extends State<allnotes> {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                      margin: EdgeInsets.only(top: 25, left: 12, right: 12),
+                      margin: EdgeInsets.only(top: statusBarHeight, left: 12, right: 12),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[

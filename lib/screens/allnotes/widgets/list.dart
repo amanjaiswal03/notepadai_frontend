@@ -7,6 +7,11 @@ Future<List<Map>> fetchNotesFromDatabase() async {
   return Note().getNotes();
 }
 
+Future<List<Map>> notesFromDatabase() async {
+  return Note().getNotes();
+}
+
+
 class ListViewTranscripts extends StatefulWidget {
   @override
   _ListViewTranscriptsState createState() => _ListViewTranscriptsState();
@@ -15,26 +20,28 @@ class ListViewTranscripts extends StatefulWidget {
 
 class _ListViewTranscriptsState extends State<ListViewTranscripts> {
 
+  Note _db = Note();
+
   @override
   initState(){
     super.initState();
     _db.init();
-    _db.values['Note']['title'] = "hey";
-    _db.values['Note']['text'] = "My transcript";
-    _db.save().then((saved) {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(saved ? "Data saved successfully" : "Data not saved!"),
-        action: SnackBarAction(
-          label: 'Undo',
-          onPressed: () {
-            // Some code to undo the change!
-          },
-        ),
-      ));
-    });
+    if(_db.values['Note'] != null) {
+      _db.values['Note']['title'] = "hey"+_db.values['Note'].length.toString();
+      _db.values['Note']['text'] = "My transcript";
+      _db.save().then((saved) {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(saved ? "Data saved successfully" : "Data not saved!"),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              // Some code to undo the change!
+            },
+          ),
+        ));
+      });
+    }
   }
-
-  Note _db = Note();
 
   @override
   void dispose() {
@@ -51,7 +58,7 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
               return new Container(
-                margin: EdgeInsets.only(bottom: 12),
+                margin: EdgeInsets.only(bottom: 6),
                 child: Column(
                     children: <Widget>[
                       new GestureDetector(
@@ -59,7 +66,7 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
                             Navigator.pushNamed(context, '/singlenoteTranscript', arguments: snapshot.data[index]);
                           },
                           // new noteItem(title: snapshot.data[index]["title"], text: snapshot.data[index]["text"]) --old item
-                          child: new noteItem()
+                          child: new noteItem(note: snapshot.data[index])
                       )
                     ]
                 ),

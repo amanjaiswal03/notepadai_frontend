@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 class noteItem extends StatefulWidget {
+  Map note;
+  noteItem({this.note});
   @override
   _noteItemState createState() => _noteItemState();
 }
 
 class _noteItemState extends State<noteItem> {
+
   @override
   Widget build(BuildContext context) {
-    return
-      new Container(
+    return Container(
         height: 95,
-          // box shadow
+          /* box shadow
           decoration: new BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: new BorderRadius.circular(100.0),
@@ -20,7 +22,7 @@ class _noteItemState extends State<noteItem> {
               blurRadius: 10.0,
               offset: new Offset(0, 5),
             ),
-          ]),
+          ]), */
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -36,41 +38,7 @@ class _noteItemState extends State<noteItem> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Expanded( /* left site */
-                          child: new Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Column(
-                                      children: <Widget>[
-                                        // tag
-                                        Container(
-                                          padding: EdgeInsets.only(left: 12, right: 12, top: 6, bottom: 6),
-                                          decoration: new BoxDecoration(
-                                              shape: BoxShape.rectangle,
-                                              color: Color(0xffE0E0E0),
-                                              borderRadius: new BorderRadius.circular(32.0),
-                                          ),
-                                            child: Text("Biology")
-                                        ),
-                                        Text(
-                                            "Mitosis",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.normal,
-                                                fontFamily: "Rubik",
-                                                fontSize: 24
-                                            ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            )
-                          ),
-                        ),
+                        this.cardLeftSide(),
                         Expanded( /* right site */
                           child: new Container(
                             color: Colors.white10,
@@ -95,5 +63,47 @@ class _noteItemState extends State<noteItem> {
           ],
         )
       );
+  }
+
+  Widget cardLeftSide() {
+    return Expanded( /* left site */
+      child: new Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      // tag
+                      Container(
+                          padding: EdgeInsets.only(left: 12, right: 12, top: 6, bottom: 6),
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Color(0xffE0E0E0),
+                            borderRadius: new BorderRadius.circular(32.0),
+                          ),
+                          child: Text("Biology")
+                      ),
+                      Text(
+                        widget.note["title"]+widget.note["id"].toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontFamily: "Rubik",
+                            fontSize: 24
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              )
+            ],
+          )
+      ),
+    );
+  }
+
+  Widget cardRightSide() {
+
   }
 }
