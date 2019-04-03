@@ -36,7 +36,6 @@ class _noteItemState extends State<noteItem> {
                   child: Container(
                     padding: EdgeInsets.all(15),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         this.cardLeftSide(),
                         Expanded( /* right site */
