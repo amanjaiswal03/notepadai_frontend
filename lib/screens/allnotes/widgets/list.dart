@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:notepadai_app/screens/allnotes/widgets/note-item.dart';
+import 'package:notepadai_app/screens/allnotes/widgets/note-card.dart';
 import 'package:notepadai_app/models/Note.dart';
 import 'dart:async';
 
 Future<List<Map>> fetchNotesFromDatabase() async {
   return Note().getNotes();
 }
+
+Future<List<Map>> notesFromDatabase() async {
+  return Note().getNotes();
+}
+
 
 class ListViewTranscripts extends StatefulWidget {
   @override
@@ -15,26 +20,28 @@ class ListViewTranscripts extends StatefulWidget {
 
 class _ListViewTranscriptsState extends State<ListViewTranscripts> {
 
+  Note _db = Note();
+
   @override
   initState(){
     super.initState();
     _db.init();
-    _db.values['Note']['title'] = "hey";
-    _db.values['Note']['text'] = "My transcript";
-    _db.save().then((saved) {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(saved ? "Data saved successfully" : "Data not saved!"),
-        action: SnackBarAction(
-          label: 'Undo',
-          onPressed: () {
-            // Some code to undo the change!
-          },
-        ),
-      ));
-    });
+    if(_db.values['Note'] != null) {
+      _db.values['Note']['title'] = "hey"+_db.values['Note'].length.toString();
+      _db.values['Note']['text'] = "My transcript";
+      _db.save().then((saved) {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(saved ? "Data saved successfully" : "Data not saved!"),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              // Some code to undo the change!
+            },
+          ),
+        ));
+      });
+    }
   }
-
-  Note _db = Note();
 
   @override
   void dispose() {
@@ -50,19 +57,19 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
           return new ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (context, index) {
-              return new Column(
-                children: <Widget>[
-                  new GestureDetector(
-                      onTap: (){
-                        Navigator.pushNamed(context, '/singlenoteTranscript', arguments: snapshot.data[index]);
-                      },
-                      child: new Column(
-                        children: [
-                          new noteItem(title: snapshot.data[index]["title"], text: snapshot.data[index]["text"])
-                        ]
-                    ),
-                  )
-                ]
+              return new Container(
+                margin: EdgeInsets.only(bottom: 6),
+                child: Column(
+                    children: <Widget>[
+                      new GestureDetector(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/singlenoteTranscript', arguments: snapshot.data[index]);
+                          },
+                          // new noteItem(title: snapshot.data[index]["title"], text: snapshot.data[index]["text"]) --old item
+                          child: new noteItem(note: snapshot.data[index])
+                      )
+                    ]
+                ),
               );
             }
           );
