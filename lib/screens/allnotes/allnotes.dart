@@ -13,10 +13,14 @@ class allnotes extends StatefulWidget {
 }
 
 class _allnotesState extends State<allnotes> {
+  Widget _search;
+  void initState() {
+    super.initState();
+    _search = nonSearchingMode();
+  }
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-
     return Scaffold(
         primary: true,
       backgroundColor: Color(0xFFF2EEEE),
@@ -44,11 +48,15 @@ class _allnotesState extends State<allnotes> {
                                       fontSize: 24
                                   )
                               ),
+                              Container(
+                                child: _search,
+                              )
+                              /*
                               Icon(
                                 Icons.search,
                                 color: Colors.white,
                                 size: 32,
-                              ),
+                              ), */
                             ],
                           )
                         ],
@@ -73,6 +81,71 @@ class _allnotesState extends State<allnotes> {
         },
       ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
+    );
+  }
+
+
+  Widget nonSearchingMode () {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _search = this.searchingMode();
+        });
+        print("change to searchingmode");
+        print(this._search);
+
+      },
+      child: Icon(
+        Icons.search,
+        color: Colors.white,
+        size: 32,
+      ),
+    );
+
+  }
+
+  Widget searchingMode () {
+    return Expanded(
+      child: Container(
+        decoration: new BoxDecoration(
+              color: Color(0xFFFEFEFE).withOpacity(0.6),
+              borderRadius: BorderRadius.circular(6.0),
+        ),
+        margin: EdgeInsets.all(12),
+        child: Container(
+          padding: EdgeInsets.all(6),
+          child:  Row(
+            children: <Widget>[
+              Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 24,
+              ),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration.collapsed(hintText: ""),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18
+                  )
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    this._search = this.nonSearchingMode();
+                  });
+                },
+                child: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                  size: 32,
+                ),
+              )
+            ],
+          ),
+        )
+      )
     );
   }
 }
