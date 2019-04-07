@@ -8,10 +8,16 @@ class noteItem extends StatefulWidget {
 
 class _noteItemState extends State<noteItem> {
 
+  bool _expanded;
+
+  void initState() {
+    super.initState();
+    _expanded = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 95,
         margin: EdgeInsets.all(2),
           /* box shadow
           decoration: new BoxDecoration(
@@ -35,27 +41,64 @@ class _noteItemState extends State<noteItem> {
                   ),
                   child: Container(
                     padding: EdgeInsets.all(15),
-                    child: Row(
+                    child: Column(
                       children: <Widget>[
-                        this.cardLeftSide(),
-                        Expanded( /* right site */
-                          child: new Container(
-                            color: Colors.white10,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Icon(
-                                    Icons.keyboard_arrow_down,
-                                    size: 38,
-                                    color: Color(0xFF666666)
+                        Row(
+                          children: <Widget>[
+                            this.cardLeftSide(),
+                            Expanded( /* right site */
+                                child: new Container(
+                                    color: Colors.white10,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                _expanded = !_expanded;
+                                              });
+                                            },
+                                            child: Icon(
+                                                _expanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                                                size: 38,
+                                                color: Color(0xFF666666)
+                                            )
+                                        ),
+                                      ],
+                                    )
                                 )
-                              ],
                             )
+                          ],
+                        ),
+                        _expanded ? Container(
+                          margin: EdgeInsets.only(top: 6, right: 24, left: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Created:",
+                                    style: TextStyle(fontSize: 12, color: Color(0xFF000000).withOpacity(0.5)),
+                                  ),
+                                  Text(
+                                    "2 days ago",
+                                    style: TextStyle(fontSize: 12, color: Color(0xFF000000).withOpacity(0.5)),
+                                  )
+                                ],
+                              ),
+                              Text(
+                                "Duration 40:10",
+                                style: TextStyle(fontSize: 12, color: Color(0xFF000000).withOpacity(0.5)),
+                              ),
+                            ],
                           )
-                        )
+                        ) : Container()
                       ],
-                    ),
-
+                    )
                   )
               )
             ),
@@ -93,7 +136,7 @@ class _noteItemState extends State<noteItem> {
                         ),
                       )
                     ],
-                  )
+                  ),
                 ],
               )
             ],

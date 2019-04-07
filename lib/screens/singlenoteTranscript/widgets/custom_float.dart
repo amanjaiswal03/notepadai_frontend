@@ -20,8 +20,8 @@ class CustomFloat extends StatelessWidget {
               // new Color.fromRGBO(103, 218, 255, 1.0),
               // new Color.fromRGBO(3, 169, 244, 1.0),
               // new Color.fromRGBO(0, 122, 193, 1.0),
-              Colors.blue,
-              Colors.blue,
+              Color(0xFF354CD3),
+              Color(0xFF354CD3),
             ])),
         child: Stack(
           fit: StackFit.expand,
@@ -29,6 +29,7 @@ class CustomFloat extends StatelessWidget {
             Icon(
               icon,
               color: Colors.white,
+              size: 32,
             ),
             builder != null
                 ? Positioned(
