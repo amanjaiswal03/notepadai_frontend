@@ -17,6 +17,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #wysiwyg
+  zefyr: 0.3.0
+
   #navigate with params
   navigate: 0.0.1
 
