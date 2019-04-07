@@ -12,7 +12,7 @@ class _noteItemState extends State<noteItem> {
 
   void initState() {
     super.initState();
-    _expanded = true;
+    _expanded = false;
   }
 
   @override

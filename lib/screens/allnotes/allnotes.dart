@@ -28,6 +28,7 @@ class _allnotesState extends State<allnotes> {
       backgroundColor: Color(0xFFF2EEEE),
       body: Column(
         children: <Widget>[
+          // appbar
           Container (
             color: Color(0xFF354CD3),
             height: 100,
@@ -68,6 +69,7 @@ class _allnotesState extends State<allnotes> {
               ],
             ),
           ),
+          // content
           Expanded(
             child: ListViewTranscripts()
           ),
