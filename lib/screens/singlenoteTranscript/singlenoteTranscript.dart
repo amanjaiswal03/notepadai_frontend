@@ -6,6 +6,7 @@ import 'widgets/transcript.dart';
 import 'widgets/searchbar.dart';
 import 'widgets/bottomBar.dart';
 import 'widgets/bulletPointlist.dart';
+import 'package:zefyr/zefyr.dart';
 
 class singlenoteTranscript extends StatefulWidget {
   final String title;
@@ -18,10 +19,63 @@ class singlenoteTranscript extends StatefulWidget {
 }
 
 class _singlenoteTranscriptState extends State<singlenoteTranscript> {
+  ZefyrController _controller;
+  FocusNode _focusNode;
+  bool _edit = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Create an empty document or load existing if you have one.
+    // Here we create an empty document:
+    final document = new NotusDocument();
+    _controller = new ZefyrController(document);
+    _focusNode = new FocusNode();
+    _edit = false;
+  }
+
+  Widget Editor() {
+    final form = ListView(
+      children: <Widget>[
+        buildEditor(),
+      ],
+    );
+
+    return ZefyrScaffold(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: form,
+        ),
+      );
+  }
+
+  Widget buildEditor() {
+    final theme = new ZefyrThemeData(
+      toolbarTheme: ZefyrToolbarTheme.fallback(context).copyWith(
+        color: Colors.white,
+        toggleColor: Colors.black54,
+        iconColor: Colors.black54,
+        disabledIconColor: Colors.grey.shade500,
+      ),
+    );
+
+    return ZefyrTheme(
+      data: theme,
+      child: ZefyrField(
+        height: 500.0,
+        decoration: InputDecoration(),
+        controller: _controller,
+        focusNode: _focusNode,
+        autofocus: true,
+        physics: ClampingScrollPhysics(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return Scaffold(
         body: DefaultTabController(
           length: 2,
@@ -37,7 +91,7 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
                 },
               ),
               backgroundColor: Color(0xFF354CD3),
-              bottom: TabBar(
+              bottom: _edit ? null : TabBar(
                 labelPadding: EdgeInsets.all(4.0),
                 tabs: [
                   Text("Notes", style: TextStyle(fontSize: 22)),
@@ -62,20 +116,27 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
                 ),
               ),
             ),
-            body: TabBarView(
-              children: [
-                new bulletPointlist(),
-                new transcript(widget.text)
-              ],
-            ),
+            body: _edit ? Editor() : TabView(),
           ),
         ),
         floatingActionButton: CustomFloat(
-          icon: Icons.edit,
+          icon: _edit ? Icons.save : Icons.edit,
           qrCallback: () {
             // edit bulletpointlist
+            setState(() {
+            _edit = !_edit;
+            });
           },
         ),
+    );
+  }
+
+  Widget TabView () {
+    return TabBarView(
+      children: [
+        new bulletPointlist(),
+        new transcript(widget.text)
+      ],
     );
   }
 }

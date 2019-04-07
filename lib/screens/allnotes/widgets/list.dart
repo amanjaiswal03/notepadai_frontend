@@ -30,6 +30,7 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
       _db.values['Note']['title'] = "hey"+_db.values['Note'].length.toString();
       _db.values['Note']['text'] = "My transcript";
       _db.save().then((saved) {
+        /*
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text(saved ? "Data saved successfully" : "Data not saved!"),
           action: SnackBarAction(
@@ -38,7 +39,7 @@ class _ListViewTranscriptsState extends State<ListViewTranscripts> {
               // Some code to undo the change!
             },
           ),
-        ));
+        )); */
       });
     }
   }
