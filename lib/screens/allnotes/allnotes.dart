@@ -14,10 +14,12 @@ class allnotes extends StatefulWidget {
 
 class _allnotesState extends State<allnotes> {
   Widget _search;
+
   void initState() {
     super.initState();
     _search = nonSearchingMode();
   }
+
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
