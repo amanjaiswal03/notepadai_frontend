@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'routes.dart';
-import 'package:notepadai_app/routes/homescreen.dart';
-import 'package:notepadai_app/design elements/DiamondBorder.dart';
 
 /* NotepadAI
   Copy of base application example provided by Google
