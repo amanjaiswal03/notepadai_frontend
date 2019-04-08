@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:notepadai_app/main.dart';
 import 'widgets/bottomBar.dart';
 import 'package:notepadai_app/screens/allnotes/widgets/custom_float.dart';
 import 'package:notepadai_app/screens/allnotes/widgets/list.dart';
