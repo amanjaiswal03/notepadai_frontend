@@ -17,6 +17,7 @@ class Routes {
   final routes = <String, WidgetBuilder>{
     '/': (BuildContext context) => new allnotes(title: "allnotes"),
     '/allnotes': (BuildContext context) => new allnotes(title: "allnotes"),
+    '/singlenoteTranscript': (BuildContext context) => new singlenoteTranscript(title: "singlenoteTranscript"),
     '/singlenoteBulletPointList': (BuildContext context) => new singlenoteBulletPointList(title: "singlenote bullet point"),
     '/recording': (BuildContext context) => new recording(title: "recording")
   };

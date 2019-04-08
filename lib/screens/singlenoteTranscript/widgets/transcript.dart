@@ -28,14 +28,15 @@ class _transcriptState extends State<transcript> {
                   new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-
-                        //Need to add space below this Text ?
-                        new Text(widget.text,
-                          style: new TextStyle(
-                              color: Colors.grey[850],
-                              fontSize: 16.0
+                        Container(
+                          width: 200,
+                          child: Text(widget.text,
+                            style: new TextStyle(
+                                color: Colors.grey[850],
+                                fontSize: 16.0
+                            ),
                           ),
-                        ),
+                        )
                       ],
                   ),
                 ],
