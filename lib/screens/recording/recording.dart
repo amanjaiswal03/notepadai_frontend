@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:notepadai_app/main.dart';
-import 'widgets/custom_float.dart';
 import 'widgets/transcript.dart';
-import 'widgets/bottomBar.dart';
+import 'widgets/appBar.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
   final String title;
+
   @override
   _recordingState createState() => _recordingState();
 }

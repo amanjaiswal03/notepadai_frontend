@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notepadai_app/screens/homePage/index.dart';
 import 'package:notepadai_app/screens/allnotes/index.dart';
 import 'package:notepadai_app/screens/recording/index.dart';
 import 'package:notepadai_app/screens/singlenoteTranscript/index.dart';
-import 'package:notepadai_app/screens/singlenoteBulletPointList/index.dart';
-import 'package:navigate/navigate.dart';
 
 class ScreenArguments {
   final String title;
@@ -15,11 +12,10 @@ class ScreenArguments {
 
 class Routes {
   final routes = <String, WidgetBuilder>{
-    '/': (BuildContext context) => new allnotes(title: "allnotes"),
-    '/allnotes': (BuildContext context) => new allnotes(title: "allnotes"),
+    '/': (BuildContext context)                     => new allnotes(title: "allnotes"),
+    '/allnotes': (BuildContext context)             => new allnotes(title: "allnotes"),
     '/singlenoteTranscript': (BuildContext context) => new singlenoteTranscript(title: "singlenoteTranscript"),
-    '/singlenoteBulletPointList': (BuildContext context) => new singlenoteBulletPointList(title: "singlenote bullet point"),
-    '/recording': (BuildContext context) => new recording(title: "recording")
+    '/recording': (BuildContext context)            => new recording(title: "recording")
   };
 
   Routes() {

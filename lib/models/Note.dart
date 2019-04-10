@@ -1,14 +1,10 @@
-
 import 'dart:async';
-
 import 'package:sqflite/sqflite.dart';
-
 import 'package:dbutils/sqllitedb.dart';
-
 
 class Note extends DBInterface{
 
-  factory Note(){
+  factory Note() {
     if(_this == null) _this = Note._getInstance();
     return _this;
   }
