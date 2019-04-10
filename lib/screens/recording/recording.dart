@@ -12,6 +12,13 @@ class recording extends StatefulWidget {
 
 class _recordingState extends State<recording> {
 
+  bool _recording = false;
+
+  void initState() {
+    super.initState();
+    _recording = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
@@ -76,8 +83,18 @@ class _recordingState extends State<recording> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               
-              IconButton(icon: Icon(Icons.pause, color: Colors.blueAccent, size: 36.0 ), onPressed: () {},),
-              IconButton(icon: Icon(Icons.stop, color: Colors.blueAccent, size: 36.0 ), onPressed: () {},),
+              _recording ? IconButton(icon: Icon(Icons.pause, color: Colors.blueAccent, size: 36.0 ), onPressed: () {
+                setState(() {
+                  _recording = !_recording;
+                });
+              },) : IconButton(icon: Icon(Icons.play_arrow, color: Colors.blueAccent, size: 36.0 ), onPressed: () {
+                setState(() {
+                  _recording = !_recording;
+                });
+              },),
+              IconButton(icon: Icon(Icons.stop, color: Colors.blueAccent, size: 36.0 ), onPressed: () {
+                Navigator.pushNamed(context, '/allnotes');
+              },),
             ],
           )
           
