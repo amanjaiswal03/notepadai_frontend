@@ -40,11 +40,11 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
     );
 
     return ZefyrScaffold(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: form,
-      ),
-    );
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: form,
+        ),
+      );
   }
 
   Widget buildEditor() {
@@ -75,57 +75,57 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      body: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            leading: Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: const Icon(Icons.arrow_back, size: 32,),
-                  onPressed: () { Navigator.pushNamed(context, '/allnotes'); },
-                  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                );
-              },
-            ),
-            backgroundColor: Color(0xFF354CD3),
-            bottom: _edit ? null : TabBar(
-              labelPadding: EdgeInsets.all(4.0),
-              tabs: [
-                Text("Notes", style: TextStyle(fontSize: 22)),
-                Text("Transcript", style: TextStyle(fontSize: 22)),
-              ],
-            ),
-            title: Container(
-              margin: EdgeInsets.only(top: 2.0, right: 12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Biology: Mitosis"),
-                  Text("Created:", style: TextStyle(fontSize: 12),),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text("2 days ago - 6:11 PM", style: TextStyle(fontSize: 14),),
-                      Text("Duration: 40:10", style: TextStyle(fontSize: 14),),
-                    ],
-                  )
+        body: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    icon: const Icon(Icons.arrow_back, size: 32,),
+                    onPressed: () { Navigator.pushNamed(context, '/allnotes'); },
+                    tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                  );
+                },
+              ),
+              backgroundColor: Color(0xFF354CD3),
+              bottom: _edit ? null : TabBar(
+                labelPadding: EdgeInsets.all(4.0),
+                tabs: [
+                  Text("Notes", style: TextStyle(fontSize: 22)),
+                  Text("Transcript", style: TextStyle(fontSize: 22)),
                 ],
               ),
+              title: Container(
+                margin: EdgeInsets.only(top: 2.0, right: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Biology: Mitosis"),
+                    Text("Created:", style: TextStyle(fontSize: 12),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("2 days ago - 6:11 PM", style: TextStyle(fontSize: 14),),
+                        Text("Duration: 40:10", style: TextStyle(fontSize: 14),),
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
+            body: _edit ? Editor() : TabView(),
           ),
-          body: _edit ? Editor() : TabView(),
         ),
-      ),
-      floatingActionButton: CustomFloat(
-        icon: _edit ? Icons.save : Icons.edit,
-        qrCallback: () {
-          // edit bulletpointlist
-          setState(() {
+        floatingActionButton: CustomFloat(
+          icon: _edit ? Icons.save : Icons.edit,
+          qrCallback: () {
+            // edit bulletpointlist
+            setState(() {
             _edit = !_edit;
-          });
-        },
-      ),
+            });
+          },
+        ),
     );
   }
 

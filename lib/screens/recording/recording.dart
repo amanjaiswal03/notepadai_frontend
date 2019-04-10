@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'widgets/transcript.dart';
+import 'widgets/appBar.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
   final String title;
+
   @override
   _recordingState createState() => _recordingState();
 }

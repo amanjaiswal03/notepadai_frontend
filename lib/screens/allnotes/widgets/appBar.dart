@@ -5,11 +5,12 @@ class appBar extends StatefulWidget {
 }
 
 class _appBarState extends State<appBar> {
+
   bool _searchingModeEnabled = false;
 
   void initState() {
     super.initState();
-    _search = false;
+    _searchingModeEnabled = false;
   }
 
   @override
@@ -61,7 +62,7 @@ class _appBarState extends State<appBar> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          _searchingModeEnabled = false;
+          _searchingModeEnabled = true;
         });
         print("change to searchingmode");
         print(_searchingModeEnabled);
