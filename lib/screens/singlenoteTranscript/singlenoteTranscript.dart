@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'widgets/custom_float.dart';
 import 'widgets/transcript.dart';
 import 'widgets/bulletPointlist.dart';
-//import 'package:zefyr/zefyr.dart';
+import 'package:zefyr/zefyr.dart';
 
 class singlenoteTranscript extends StatefulWidget {
   final String title;
@@ -18,18 +18,19 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
   // ZefyrController _controller;
   FocusNode _focusNode;
   bool _edit = false;
+  ZefyrController _controller;
 
   @override
   void initState() {
     super.initState();
     // Create an empty document or load existing if you have one.
     // Here we create an empty document:
-    //final document = new NotusDocument();
-    //_controller = new ZefyrController(document);
+    final document = new NotusDocument();
+    _controller = new ZefyrController(document);
     _focusNode = new FocusNode();
     _edit = false;
   }
-  /*
+
 
   Widget Editor() {
     final form = ListView(
@@ -39,11 +40,11 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
     );
 
     return ZefyrScaffold(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: form,
-        ),
-      );
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: form,
+      ),
+    );
   }
 
   Widget buildEditor() {
@@ -68,7 +69,7 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
       ),
     );
   }
-  */
+
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
@@ -113,7 +114,7 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
               ),
             ),
           ),
-          body: /* _edit ? Editor() : */ TabView(),
+          body: _edit ? Editor() : TabView(),
         ),
       ),
       floatingActionButton: CustomFloat(

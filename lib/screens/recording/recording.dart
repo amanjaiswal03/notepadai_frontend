@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:speech/speech.dart';
-import 'widgets/appBar.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
@@ -16,16 +15,24 @@ class _recordingState extends State<recording> {
   static String responsed = "Transcript: ";
   static Stream<dynamic> stream;
   StreamSubscription<dynamic> listener;
-  void _recording()async{
+  void _recording() async{
     print("Start Recording");
     stream = transcript("xxxxxxxxxxxxxxxx");
     listener = stream.listen((response) => setState(() {responsed += response;}));
-    print("Recording startet.");
+    print("Recording started.");
   }
+
+  bool _recordingMode = false;
+
+  void initState() {
+    super.initState();
+    _recording();
+    _recordingMode = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-    _recording();
     return Scaffold(
         primary: true,
         backgroundColor: Color(0xFFF2EEEE),
@@ -86,11 +93,16 @@ class _recordingState extends State<recording> {
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              
-              IconButton(icon: Icon(Icons.pause, color: Colors.blue[900], size: 36.0 ), onPressed: () {
-                listener.cancel();
+              IconButton(icon: Icon(_recordingMode ? Icons.pause : Icons.play_arrow, color: Colors.blue[900], size: 36.0 ), onPressed: () {
+                _recordingMode ? listener.cancel() : _recording();
+                setState(() {
+                  _recordingMode = !_recordingMode;
+                });
+                print(_recordingMode ? 'stop' :'start');
               },),
-              IconButton(icon: Icon(Icons.stop, color: Colors.blue[800], size: 36.0 ), onPressed: () {},),
+              IconButton(icon: Icon(Icons.stop, color: Colors.blue[800], size: 36.0 ), onPressed: () {
+                Navigator.pushNamed(context, '/allnotes');
+              },),
             ],
           )
           
