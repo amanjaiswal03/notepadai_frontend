@@ -1,22 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'widgets/transcript.dart';
-import 'widgets/appBar.dart';
+import 'package:speech/speech.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
   final String title;
-
+  
   @override
   _recordingState createState() => _recordingState();
 }
 
 class _recordingState extends State<recording> {
+  static String responsed = "Transcript: ";
+  static Stream<dynamic> stream;
+  StreamSubscription<dynamic> listener;
+  void _recording() async{
+    print("Start Recording");
+    stream = transcript("xxxxxxxxxxxxxxxx");
+    listener = stream.listen((response) => setState(() {responsed += response;}));
+    print("Recording started.");
+  }
 
-  bool _recording = false;
+  bool _recordingMode = false;
 
   void initState() {
     super.initState();
-    _recording = true;
+    _recording();
+    _recordingMode = true;
   }
 
   @override
@@ -74,7 +85,7 @@ class _recordingState extends State<recording> {
               )
             ),
             Expanded(
-              child: transcript()
+              child: Text(responsed)
             ),
           ],
         ),
@@ -82,23 +93,21 @@ class _recordingState extends State<recording> {
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              
-              _recording ? IconButton(icon: Icon(Icons.pause, color: Colors.blueAccent, size: 36.0 ), onPressed: () {
+              IconButton(icon: Icon(_recordingMode ? Icons.pause : Icons.play_arrow, color: Colors.blue[900], size: 36.0 ), onPressed: () {
+                _recordingMode ? listener.cancel() : _recording();
                 setState(() {
-                  _recording = !_recording;
+                  _recordingMode = !_recordingMode;
                 });
-              },) : IconButton(icon: Icon(Icons.play_arrow, color: Colors.blueAccent, size: 36.0 ), onPressed: () {
-                setState(() {
-                  _recording = !_recording;
-                });
+                print(_recordingMode ? 'stop' :'start');
               },),
-              IconButton(icon: Icon(Icons.stop, color: Colors.blueAccent, size: 36.0 ), onPressed: () {
+              IconButton(icon: Icon(Icons.stop, color: Colors.blue[800], size: 36.0 ), onPressed: () {
                 Navigator.pushNamed(context, '/allnotes');
               },),
             ],
           )
           
         ),
+        
     );
   }
 }
