@@ -1,16 +1,17 @@
+import 'package:notepadai_app/src/client.dart';
+import 'package:notepadai_app/src/transcriptor.dart';
+
 import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:notepadai_app/src/client.dart';
-import 'package:mic_stream/mic_stream.dart';
 
 class CustomFloat extends StatelessWidget {
   final IconData icon;
   final Widget builder;
   final VoidCallback qrCallback;
   final isMini;
-  StreamSubscription<Uint8List> listener;
+  StreamSubscription<dynamic> listener;
 
   CustomFloat({this.icon, this.builder, this.qrCallback, this.isMini = false});
 
@@ -20,9 +21,8 @@ class CustomFloat extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       mini: isMini,
       onPressed: () {
-        Stream<Uint8List> stream = microphone().asBroadcastStream();
+        Stream<dynamic> stream = transcript("example.json");
         listener = stream.listen((samples) => null);
-        Stream<String> response = new Client().transcriptAudio(stream);
       },
       child: Ink(
         decoration: new BoxDecoration(
