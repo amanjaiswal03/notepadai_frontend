@@ -3,6 +3,7 @@ import 'package:notepadai_app/screens/allnotes/index.dart';
 import 'package:notepadai_app/screens/recording/index.dart';
 import 'package:notepadai_app/screens/singlenoteTranscript/index.dart';
 
+
 class ScreenArguments {
   final String title;
   final String text;
@@ -14,7 +15,6 @@ class Routes {
   final routes = <String, WidgetBuilder>{
     '/': (BuildContext context)                     => new allnotes(title: "allnotes"),
     '/allnotes': (BuildContext context)             => new allnotes(title: "allnotes"),
-    '/singlenoteTranscript': (BuildContext context) => new singlenoteTranscript(title: "singlenoteTranscript"),
     '/recording': (BuildContext context)            => new recording(title: "recording")
   };
 
@@ -35,9 +35,12 @@ class Routes {
           // pass the data to the correct screen.
           return MaterialPageRoute(
             builder: (context) {
+              print("route args");
+              print(args);
               return singlenoteTranscript(
                 title: args["title"],
                 text: args["text"],
+                note: {'text': args['text'], 'title': args['title']},
               );
             },
           );

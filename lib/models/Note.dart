@@ -20,6 +20,8 @@ class Note extends DBInterface{
   @override
   get version => 1;
 
+  
+
   @override
   Future onCreate(Database db, int version) async {
 
