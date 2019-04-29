@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:notepadai_app/src/client.dart';
+
 import 'package:flutter/material.dart';
-import 'package:speech/speech.dart';
+import 'package:mic_stream/mic_stream.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
@@ -13,11 +15,12 @@ class recording extends StatefulWidget {
 
 class _recordingState extends State<recording> {
   static String responsed = "Transcript: ";
+  static Client client = new Client();
   static Stream<dynamic> stream;
   StreamSubscription<dynamic> listener;
   void _recording() async{
     print("Start Recording");
-    stream = transcript("xxxxxxxxxxxxxxxx");
+    stream = client.transcriptAudio(microphone(audioSource: AudioSource.DEFAULT, audioFormat: AudioFormat.ENCODING_PCM_16BIT, sampleRate: 16000, channelConfig: ChannelConfig.CHANNEL_IN_MONO));
     listener = stream.listen((response) => setState(() {responsed += response;}));
     print("Recording started.");
   }

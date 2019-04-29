@@ -3,8 +3,6 @@ import 'generated/audioStream.pbgrpc.dart';
 
 import 'package:grpc/grpc.dart';
 
-import 'dart:typed_data';
-
 class Client {
   ClientChannel channel;
   AudioProcessorClient stub;
@@ -19,15 +17,15 @@ class Client {
     stub = new AudioProcessorClient(channel, options: options);
   }
 
-  Stream<String> transcriptAudio(Stream<Uint8List> audio) async* {
-    yield* _responseToString(stub.transcriptAudio(audio.map((audio) => _audioToSamples(audio))));
+  Stream<String> transcriptAudio(Stream audio) async* {
+    yield* _responseToString(stub.transcriptAudio(audio.map(_audioToSamples)));
   }
 
   Stream<String> _responseToString(ResponseStream<dynamic> response) async* {
     yield* response.map((value) => value.word);
   }
 
-  Samples _audioToSamples(List<int> input) {
+  Samples _audioToSamples(var input) {
     Samples samples = new Samples();
     samples.chunk = input;
     return samples;
