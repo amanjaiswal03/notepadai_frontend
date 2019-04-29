@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:speech/speech.dart';
+import '../../models/Note.dart';
 
 class recording extends StatefulWidget {
   recording({Key key, this.title}) : super(key: key);
@@ -101,7 +102,12 @@ class _recordingState extends State<recording> {
                 print(_recordingMode ? 'stop' :'start');
               },),
               IconButton(icon: Icon(Icons.stop, color: Colors.blue[800], size: 36.0 ), onPressed: () {
-                Navigator.pushNamed(context, '/allnotes');
+                Note note = new Note();
+                note.values["Note"]["title"] = "newNote";
+                note.values["Note"]["text"] = responsed;
+                note.save();
+                var noteArr = {'title': "newNote", 'text': responsed, 'note': {'title': "newNote", 'text': responsed}};
+                Navigator.pushNamed(context, '/singlenoteTranscript', arguments: {'title': "newNote", 'text': responsed, 'note': {'title': "newNote", 'text': responsed}});
               },),
             ],
           )

@@ -3,11 +3,14 @@ import 'widgets/custom_float.dart';
 import 'widgets/transcript.dart';
 import 'widgets/bulletPointlist.dart';
 import 'package:zefyr/zefyr.dart';
+import 'package:quill_delta/quill_delta.dart';
+import 'dart:convert';
 
 class singlenoteTranscript extends StatefulWidget {
   final String title;
   final String text;
-  singlenoteTranscript({Key key, this.title, this.text}) : super(key: key);
+  var note;
+  singlenoteTranscript({Key key, this.title, this.text, this.note}) : super(key: key);
   @override
   _singlenoteTranscriptState createState() {
     return new _singlenoteTranscriptState();
@@ -19,13 +22,22 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
   FocusNode _focusNode;
   bool _edit = false;
   ZefyrController _controller;
+  NotusDocument document;
 
   @override
   void initState() {
     super.initState();
     // Create an empty document or load existing if you have one.
-    // Here we create an empty document:
-    final document = new NotusDocument();
+    var doc = new Delta()..insert('Hello world', {'b': true});
+    var change = new Delta()
+      ..retain(6)
+      ..delete(5)
+      ..insert('Earth');
+    var result = doc.compose(change);
+    print('Original document:\n$doc\n');
+    print('Change:\n$change\n');
+    print('Updated document:\n$result\n');
+    document = new NotusDocument.fromDelta(result);
     _controller = new ZefyrController(document);
     _focusNode = new FocusNode();
     _edit = false;
@@ -124,6 +136,11 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
           setState(() {
             _edit = !_edit;
           });
+          //get text from edit
+          print('here comes the document content');
+          JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+          String prettyprint = encoder.convert(document.toJson());
+          print(prettyprint);
         },
       ),
     );
@@ -133,7 +150,7 @@ class _singlenoteTranscriptState extends State<singlenoteTranscript> {
     return TabBarView(
       children: [
         new bulletPointlist(),
-        new transcript("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        new transcript(widget.note["text"])
       ],
     );
   }
