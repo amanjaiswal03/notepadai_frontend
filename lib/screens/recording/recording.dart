@@ -15,7 +15,7 @@ class recording extends StatefulWidget {
 
 class _recordingState extends State<recording> {
   static String responsed = "Transcript: ";
-  static Client client = new Client();
+  static Client client = new Client(host: "192.168.43.212");
   static Stream<dynamic> stream;
   StreamSubscription<dynamic> listener;
   void _recording() async{
